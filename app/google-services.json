@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "84745519025",
+    "project_id": "naturalis-7c5e9",
+    "storage_bucket": "naturalis-7c5e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84745519025:android:8584c9784cefbc3529c790",
+        "android_client_info": {
+          "package_name": "com.chs.naturalis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84745519025-8s9al6kgjbo20m3h2q4nqbuce81frmbl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhHPf9vcdr9DW1c_5TD-_7CD7TLlhi7FQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84745519025-8s9al6kgjbo20m3h2q4nqbuce81frmbl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
