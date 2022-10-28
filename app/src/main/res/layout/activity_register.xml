@@ -46,43 +46,44 @@
         android:layout_width="308dp"
         android:layout_height="55dp"
         android:layout_marginTop="50dp"
+        android:drawableEnd="@drawable/ic_baseline_visibility_off_24"
         android:ems="10"
         android:hint="Password"
         android:importantForAutofill="no"
-        android:drawableEnd="@drawable/ic_baseline_visibility_off_24"
-        android:longClickable="false"
         android:inputType="textWebPassword"
+        android:longClickable="false"
         android:minHeight="48dp"
         android:textAlignment="textStart"
         android:textDirection="ltr"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintVertical_bias="0.238" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="310dp"
         android:layout_height="51dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.423"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.359" />
+        app:layout_constraintVertical_bias="0.265" />
 
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="308dp"
         android:layout_height="56dp"
+        android:layout_marginTop="250dp"
         android:ems="10"
         android:hint="Phone number"
         android:importantForAutofill="no"
@@ -93,15 +94,16 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.429"
+        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549" />
+        app:layout_constraintVertical_bias="0.145" />
 
     <EditText
         android:id="@+id/address"
         android:layout_width="310dp"
         android:layout_height="59dp"
+        android:layout_marginTop="300dp"
         android:ems="10"
         android:hint="Address"
         android:importantForAutofill="no"
@@ -112,51 +114,51 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.658" />
+        app:layout_constraintVertical_bias="0.209" />
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="423dp"
         android:layout_height="74dp"
+        android:layout_marginTop="400dp"
         android:text="Register"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.778" />
+        app:layout_constraintVertical_bias="0.214" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="204dp"
         android:layout_height="50dp"
+        android:layout_marginTop="550dp"
         android:text="Already have an account?"
         android:textAlignment="textStart"
         android:textAllCaps="true"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.223"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.902" />
+        app:layout_constraintVertical_bias="0.207" />
 
-    <TextView
-        android:id="@+id/signInTextField"
-        android:layout_width="87dp"
-        android:layout_height="52dp"
+    <Button
+        android:id="@+id/goBackToLogin"
+        android:layout_width="89dp"
+        android:layout_height="41dp"
         android:text="SIGN IN"
-        android:textAlignment="textStart"
-        android:textAllCaps="true"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintHorizontal_bias="0.701"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.901" />
+        app:layout_constraintVertical_bias="0.82" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
