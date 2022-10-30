@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chs.exceptions.naturalis.FieldNotCompletedException;
 import com.chs.exceptions.naturalis.InvalidEmailException;
-import com.chs.exceptions.naturalis.UsernameAlreadyExistsException;
+import com.chs.exceptions.naturalis.UserEmailAlreadyExistsException;
 import com.chs.naturalis.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,6 +42,9 @@ public class Register extends AppCompatActivity {
     private boolean passwordVisible = false;
     private final ArrayList<User> userList = new ArrayList<>();
 
+    private boolean flag = true;
+    private boolean isAdmin = true;
+
     private static final Logger LOGGER = getLogger(Register.class.getName());
 
     /*
@@ -54,6 +57,9 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        //function executed only the first time ever the app is turned on
+        insertPredefinedAdmin();
 
         registerUser();
 
@@ -114,8 +120,6 @@ public class Register extends AppCompatActivity {
         registerButton = findViewById(R.id.registerButton);
     }
 
-    boolean flag = true;
-
     private void insertUserIntoDb() {
         try {
             user = new User();
@@ -125,10 +129,11 @@ public class Register extends AppCompatActivity {
             user.setEmail(email.getText().toString().trim());
             user.setPhoneNumber(phoneNumber.getText().toString().trim());
             user.setAddress(address.getText().toString().trim());
+            user.setRole("Client");
 
             checkAllFieldsAreCompleted(name.getText().toString(), password.getText().toString(), email.getText().toString(), phoneNumber.getText().toString(), address.getText().toString());
 
-            checkUserAlreadyExists(name.getText().toString());
+            checkUserEmailAlreadyExists(email.getText().toString());
             checkIfEmailIsValid(email.getText().toString().trim());
 
             LOGGER.info("User account has been created.");
@@ -144,7 +149,7 @@ public class Register extends AppCompatActivity {
         } catch (InvalidEmailException e) {
             Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_LONG).show();
             LOGGER.info("User account has not been created due to invalid email.");
-        } catch (UsernameAlreadyExistsException e) {
+        } catch (UserEmailAlreadyExistsException e) {
             Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_LONG).show();
             LOGGER.info(e.getMessage());
         }
@@ -265,20 +270,42 @@ public class Register extends AppCompatActivity {
     /**
      * Query the database for finding if the name that a user introduced is already defined in the DB.
      *
-     * @param username The user name introduced.
-     * @throws UsernameAlreadyExistsException The exception thrown if the username already exists.
+     * @param email The user email introduced.
+     * @throws UserEmailAlreadyExistsException The exception thrown if the username already exists.
      */
-    private void checkUserAlreadyExists(String username) throws UsernameAlreadyExistsException {
-        StringBuilder nameErrorMessage = new StringBuilder();
+    private void checkUserEmailAlreadyExists(String email) throws UserEmailAlreadyExistsException {
+        StringBuilder emailErrorMessage = new StringBuilder();
 
-        nameErrorMessage.append("Username ").append(username).append(" already exists!");
+        emailErrorMessage.append("Email ").append(email).append(" already exists!");
 
         final ArrayList<User> userList = getUsersFromDatabase();
         for (User user : userList) {
-            if (user.getName().equals(username)) {
+            if (user.getEmail().equals(email)) {
                 flag = false;
-                LOGGER.info("User is : " + user.getName());
-                throw new UsernameAlreadyExistsException(nameErrorMessage.toString());
+                LOGGER.info("User email is : " + user.getEmail());
+                throw new UserEmailAlreadyExistsException(emailErrorMessage.toString());
+            }
+        }
+    }
+
+    /**
+     * At starting the app, an admin account will always be present.
+     */
+    private void insertPredefinedAdmin() {
+        final String adminEmail = "admin@yahoo.com";
+
+        final ArrayList<User> userList = getUsersFromDatabase();
+        for (User user : userList) {
+            if (!user.getEmail().equals(adminEmail)) {
+                User newUser = new User();
+
+                newUser.setName("admin");
+                newUser.setPassword("admin");
+                newUser.setEmail("admin@yahoo.com");
+                newUser.setPhoneNumber("1234567891");
+                newUser.setAddress("Str.Bucuriei nr.7");
+                newUser.setRole("Admin");
+                database.push().setValue(newUser);
             }
         }
     }

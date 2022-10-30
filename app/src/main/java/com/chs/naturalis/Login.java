@@ -12,19 +12,19 @@ import com.chs.naturalis.R;
 
 public class Login extends AppCompatActivity {
 
-    private Button button;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        button = findViewById(R.id.button);
-        button.setOnClickListener(v -> {
-            new Handler().postDelayed(() -> {
-                Intent intent = new Intent(Login.this, Register.class);
-                startActivity(intent);
-                finish();
-            }, 1);
-        });
-    }
+//    private Button button;
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_login);
+//
+//        button = findViewById(R.id.button);
+//        button.setOnClickListener(v -> {
+//            new Handler().postDelayed(() -> {
+//                Intent intent = new Intent(Login.this, Register.class);
+//                startActivity(intent);
+//                finish();
+//            }, 1);
+//        });
+//    }
 }
