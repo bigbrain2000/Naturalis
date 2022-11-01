@@ -13,6 +13,20 @@
         android:theme="@style/Theme.Naturalis"
         tools:targetApi="31">
         <activity
+            android:name=".HomePageAdmin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".HomePageClient"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Register"
             android:exported="false">
             <meta-data
