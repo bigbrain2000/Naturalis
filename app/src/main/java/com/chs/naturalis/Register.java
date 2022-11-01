@@ -1,5 +1,7 @@
 package com.chs.naturalis;
 
+import static android.widget.Toast.LENGTH_LONG;
+import static android.widget.Toast.makeText;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
@@ -10,7 +12,6 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,13 +38,12 @@ public class Register extends AppCompatActivity {
     private EditText name, password, email, phoneNumber, address;
     private Button registerButton;
     private Button goBackToLogin;
+
     private DatabaseReference database;
     private User user;
     private boolean passwordVisible = false;
     private final ArrayList<User> userList = new ArrayList<>();
-
     private boolean flag = true;
-    private boolean isAdmin = true;
 
     private static final Logger LOGGER = getLogger(Register.class.getName());
 
@@ -89,7 +89,7 @@ public class Register extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                Toast.makeText(Register.this, "Error on retrieving data from database.", Toast.LENGTH_LONG).show();
+                makeText(Register.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
 
@@ -112,12 +112,12 @@ public class Register extends AppCompatActivity {
     }
 
     private void identifyTheUserFieldsById() {
-        name = findViewById(R.id.name);
+        name = findViewById(R.id.email);
         password = findViewById(R.id.password);
         email = findViewById(R.id.email);
         phoneNumber = findViewById(R.id.phoneNumber);
         address = findViewById(R.id.address);
-        registerButton = findViewById(R.id.registerButton);
+        registerButton = findViewById(R.id.loginButton);
     }
 
     private void insertUserIntoDb() {
@@ -137,27 +137,32 @@ public class Register extends AppCompatActivity {
             checkIfEmailIsValid(email.getText().toString().trim());
 
             LOGGER.info("User account has been created.");
-            Toast.makeText(Register.this, "Your account has been successfully created!", Toast.LENGTH_LONG).show();
+            makeText(Register.this, "Your account has been successfully created!", LENGTH_LONG).show();
             //push them in the DB
             database.push().setValue(user);
             flag = true;
             LOGGER.info("User pushed to DB");
 
         } catch (FieldNotCompletedException e) {
-            Toast.makeText(Register.this, "Fields are not completed!", Toast.LENGTH_LONG).show();
+            makeText(Register.this, "Fields are not completed!", LENGTH_LONG).show();
             LOGGER.info("User account has not been created due to uncompleted fields.");
         } catch (InvalidEmailException e) {
-            Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            makeText(Register.this, e.getMessage(), LENGTH_LONG).show();
             LOGGER.info("User account has not been created due to invalid email.");
         } catch (UserEmailAlreadyExistsException e) {
-            Toast.makeText(Register.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            makeText(Register.this, e.getMessage(), LENGTH_LONG).show();
             LOGGER.info(e.getMessage());
         }
     }
 
-    private void checkAllFieldsAreCompleted(@NotNull String name, @NotNull String password, @NotNull String email, @NotNull String phoneNumber, @NotNull String address) throws FieldNotCompletedException {
+    private void checkAllFieldsAreCompleted(@NotNull String name,
+                                            @NotNull String password,
+                                            @NotNull String email,
+                                            @NotNull String phoneNumber,
+                                            @NotNull String address) throws FieldNotCompletedException {
 
-        if (name.trim().isEmpty() || password.trim().isEmpty() || email.trim().isEmpty() || phoneNumber.trim().isEmpty() || address.trim().isEmpty()) {
+        if (name.trim().isEmpty() || password.trim().isEmpty() || email.trim().isEmpty()
+                || phoneNumber.trim().isEmpty() || address.trim().isEmpty()) {
             flag = false;
             throw new FieldNotCompletedException();
         }
@@ -167,7 +172,7 @@ public class Register extends AppCompatActivity {
      * Change the activity from Register to Login.
      */
     private void transitionToLoginPage() {
-        registerButton = findViewById(R.id.registerButton);
+        registerButton = findViewById(R.id.loginButton);
 
         registerButton.setOnClickListener(v -> {
             new Handler().postDelayed(() -> {
