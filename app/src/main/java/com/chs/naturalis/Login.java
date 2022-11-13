@@ -33,8 +33,10 @@ public class Login extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private DatabaseReference database;
+
     private final ArrayList<User> userList = new ArrayList<>();
     private boolean flag = true;
+    private static final User loggedUser = new User();
 
     private static final Logger LOGGER = getLogger(Login.class.getName());
 
@@ -59,7 +61,6 @@ public class Login extends AppCompatActivity {
             finish();
         }, 1));
     }
-
 
     /**
      * Retrieve a list with all the users from the database.
@@ -112,13 +113,34 @@ public class Login extends AppCompatActivity {
         for (User user : usersFromDatabase) {
             if (Objects.equals(email.getText().toString(), user.getEmail()) && Objects.equals(password.getText().toString(), user.getPassword()))
                 if (user.getRole().equals("Client")) {
+                    setLoggedUserFields(user);
                     return 1;
                 } else {
+                    setLoggedUserFields(user);
                     return 2;
                 }
         }
 
         return 0;
+    }
+
+    private void setLoggedUserFields(User user) {
+        loggedUser.setName(user.getName());
+        loggedUser.setPassword(user.getPassword());
+        loggedUser.setEmail(user.getEmail());
+        loggedUser.setPhoneNumber(user.getPhoneNumber());
+        loggedUser.setAddress(user.getAddress());
+        loggedUser.setRole(user.getRole());
+    }
+
+    /**
+     * User data retrieved for using it in {@link HomePageClient}
+     *
+     * @return The logged user.
+     */
+    public static User getLoggedUser() {
+        LOGGER.info("Logged user returned successfully.");
+        return loggedUser;
     }
 
     /**
@@ -132,45 +154,58 @@ public class Login extends AppCompatActivity {
 
         loginButton.setOnClickListener(v -> new Handler().postDelayed(() -> {
             int value = getValueBasedOnUserRole();
-            LOGGER.info(value + " valoare");
 
             try {
                 if (!flag)
-                    checkAllFieldsAreCompleted(email.getText().toString(), password.getText().toString());
+                    checkAllFieldsAreCompleted(email, password);
                 if (value == 1) {
-
-
                     Intent intent = new Intent(Login.this, HomePageClient.class);
                     startActivity(intent);
                     finish();
                 }
             } catch (FieldNotCompletedException e) {
-                makeText(Login.this, "Fields are not completed!", LENGTH_LONG).show();
                 LOGGER.info("User has not been logged in due to uncompleted fields.");
             }
 
             try {
-                checkAllFieldsAreCompleted(email.getText().toString(), password.getText().toString());
+                checkAllFieldsAreCompleted(email, password);
                 if (value == 2) {
-
-
                     Intent intent = new Intent(Login.this, HomePageAdmin.class);
                     startActivity(intent);
                     finish();
                 }
             } catch (FieldNotCompletedException e) {
-                makeText(Login.this, "Fields are not completed!", LENGTH_LONG).show();
                 LOGGER.info("User has not been logged in due to uncompleted fields.");
             }
         }, 1));
     }
 
 
-    private void checkAllFieldsAreCompleted(@NotNull String email,
-                                            @NotNull String password) throws FieldNotCompletedException {
+    /**
+     * Check if the email and password provided are not empty.
+     *
+     * @param email    The provided email.
+     * @param password The provided password.
+     * @throws FieldNotCompletedException Exception thrown in case the the fields are not completed.
+     */
+    private void checkAllFieldsAreCompleted(@NotNull EditText email,
+                                            @NotNull EditText password) throws FieldNotCompletedException {
 
-        if (email.trim().isEmpty() || password.trim().isEmpty()) {
+        checkFieldIsCompleted(email);
+        checkFieldIsCompleted(password);
+    }
+
+    /**
+     * Check if the one field is completed.
+     *
+     * @param field The provided field.
+     * @throws FieldNotCompletedException Exception thrown in case the the field is not completed.
+     */
+    private void checkFieldIsCompleted(EditText field) throws FieldNotCompletedException {
+        if (field.getText().toString().isEmpty()) {
             flag = false;
+
+            field.setError("Field cannot be empty");
             throw new FieldNotCompletedException();
         }
     }
