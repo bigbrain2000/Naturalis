@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="251dp"
+        android:layout_height="65dp"
+        android:text="Create an account"
+        android:textAlignment="textStart"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="308dp"
+        android:layout_height="58dp"
+        android:ems="10"
+        android:hint="Name"
+        android:importantForAutofill="no"
+        android:minHeight="48dp"
+        android:textAlignment="textStart"
+        android:textDirection="ltr"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21" />
+
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="308dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:hint="Password"
+        android:importantForAutofill="no"
+        android:longClickable="false"
+        android:minHeight="48dp"
+        android:textAlignment="textStart"
+        android:textDirection="ltr"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.436"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.238" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="310dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="120dp"
+        android:ems="10"
+        android:hint="Email"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.265" />
+
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:layout_width="308dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="250dp"
+        android:ems="10"
+        android:hint="Phone number"
+        android:importantForAutofill="no"
+        android:minHeight="48dp"
+        android:textAlignment="textStart"
+        android:textDirection="ltr"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.145" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="310dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="300dp"
+        android:ems="10"
+        android:hint="Address"
+        android:importantForAutofill="no"
+        android:minHeight="48dp"
+        android:textAlignment="textStart"
+        android:textDirection="ltr"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.209" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints"
+        android:backgroundTint="@color/green"
+        app:itemIconTint="@color/green"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/navigation_menu"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

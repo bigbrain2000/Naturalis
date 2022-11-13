@@ -112,7 +112,7 @@ public class Register extends AppCompatActivity {
     }
 
     private void identifyTheUserFieldsById() {
-        name = findViewById(R.id.email);
+        name = findViewById(R.id.name);
         password = findViewById(R.id.password);
         email = findViewById(R.id.email);
         phoneNumber = findViewById(R.id.phoneNumber);
@@ -131,7 +131,7 @@ public class Register extends AppCompatActivity {
             user.setAddress(address.getText().toString().trim());
             user.setRole("Client");
 
-            checkAllFieldsAreCompleted(name.getText().toString(), password.getText().toString(), email.getText().toString(), phoneNumber.getText().toString(), address.getText().toString());
+            checkAllFieldsAreCompleted(name, password, email, phoneNumber, address);
 
             checkUserEmailAlreadyExists(email.getText().toString());
             checkIfEmailIsValid(email.getText().toString().trim());
@@ -155,14 +155,27 @@ public class Register extends AppCompatActivity {
         }
     }
 
-    private void checkAllFieldsAreCompleted(@NotNull String name,
-                                            @NotNull String password,
-                                            @NotNull String email,
-                                            @NotNull String phoneNumber,
-                                            @NotNull String address) throws FieldNotCompletedException {
+    private void checkAllFieldsAreCompleted(@NotNull EditText name,
+                                            @NotNull EditText password,
+                                            @NotNull EditText email,
+                                            @NotNull EditText phoneNumber,
+                                            @NotNull EditText address) throws FieldNotCompletedException {
+        checkFieldIsCompleted(name);
+        checkFieldIsCompleted(password);
+        checkFieldIsCompleted(email);
+        checkFieldIsCompleted(phoneNumber);
+        checkFieldIsCompleted(address);
+    }
 
-        if (name.trim().isEmpty() || password.trim().isEmpty() || email.trim().isEmpty()
-                || phoneNumber.trim().isEmpty() || address.trim().isEmpty()) {
+    /**
+     * Check if the one field is completed.
+     *
+     * @param field The provided field.
+     * @throws FieldNotCompletedException Exception thrown in case the the field is not completed.
+     */
+    private void checkFieldIsCompleted(EditText field) throws FieldNotCompletedException {
+        if (field.getText().toString().isEmpty()) {
+            field.setError("Field cannot be empty");
             flag = false;
             throw new FieldNotCompletedException();
         }
@@ -256,7 +269,7 @@ public class Register extends AppCompatActivity {
     }
 
     /**
-     * When the SIGNIN button is pressed then the activity
+     * When the SIGN IN button is pressed then the activity
      * is change from Register to Login.
      */
     private void pushSignInButton() {
