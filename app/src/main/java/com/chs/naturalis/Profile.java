@@ -67,7 +67,7 @@ public class Profile extends AppCompatActivity {
                 case R.id.menuAccount:
                     return true;
                 case R.id.menuLogout:
-                    // TODO
+                    transitionToLoginActivity();
                     return true;
             }
             return false;
@@ -77,6 +77,14 @@ public class Profile extends AppCompatActivity {
     private void transitionToHomeActivity() {
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(Profile.this, HomePageClient.class);
+            startActivity(intent);
+            finish();
+        }, SPLASH_SCREEN);
+    }
+
+    private void transitionToLoginActivity() {
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(Profile.this, Login.class);
             startActivity(intent);
             finish();
         }, SPLASH_SCREEN);

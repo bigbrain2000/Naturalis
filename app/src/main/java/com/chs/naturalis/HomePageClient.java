@@ -43,7 +43,7 @@ public class HomePageClient extends AppCompatActivity {
                     transitionToProfileActivity();
                     return true;
                 case R.id.menuLogout:
-                    // TODO
+                    transitionToLoginActivity();
                     return true;
             }
             return false;
@@ -53,6 +53,14 @@ public class HomePageClient extends AppCompatActivity {
     private void transitionToProfileActivity() {
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(HomePageClient.this, Profile.class);
+            startActivity(intent);
+            finish();
+        }, SPLASH_SCREEN);
+    }
+
+    private void transitionToLoginActivity() {
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(HomePageClient.this, Login.class);
             startActivity(intent);
             finish();
         }, SPLASH_SCREEN);
