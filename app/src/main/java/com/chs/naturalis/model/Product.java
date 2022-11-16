@@ -9,22 +9,30 @@ public class Product {
     private int quantity;
     private String description;
     private String category;
-
+    private String currency;
 
     public Product(int id) {
         this.id = id;
-
     }
 
-    public Product(String name, double price, int quantity, String description, String category) {
+    public Product() {
+    }
+
+    public Product(Integer id,
+                   String name,
+                   double price,
+                   int quantity,
+                   String description,
+                   String category,
+                   String currency) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
         this.category = category;
+        this.currency = currency;
     }
-
 
     public int getId() {
         return id;
@@ -74,6 +82,27 @@ public class Product {
         this.category = category;
     }
 
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id && Double.compare(product.price, price) == 0 && quantity == product.quantity && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(category, product.category) && Objects.equals(currency, product.currency);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, quantity, description, category, currency);
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -83,19 +112,7 @@ public class Product {
                 ", quantity=" + quantity +
                 ", description='" + description + '\'' +
                 ", category='" + category + '\'' +
+                ", currency='" + currency + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return id == product.id && Double.compare(product.price, price) == 0 && quantity == product.quantity && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(category, product.category);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, quantity, description, category);
     }
 }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         logoNameImage.setAnimation(bottomAnimation);
 
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(MainActivity.this, AddProduct.class);
+            Intent intent = new Intent(MainActivity.this, HomePageAdmin.class);
             startActivity(intent);
             finish();
         }, SPLASH_SCREEN);
