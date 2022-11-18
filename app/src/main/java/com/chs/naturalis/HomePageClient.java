@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,9 +18,9 @@ import java.util.logging.Logger;
 public class HomePageClient extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private static final int SPLASH_SCREEN = 1000;
-
+    private static final int SPLASH_SCREEN = 10;
     private static final Logger LOGGER = getLogger(HomePageClient.class.getName());
+    private ImageView imageSyrup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class HomePageClient extends AppCompatActivity {
         setContentView(R.layout.activity_home_page_client);
 
         actionOnNavBarItemSelected();
+        transitionToViewProductActivity();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -36,7 +39,6 @@ public class HomePageClient extends AppCompatActivity {
                 case R.id.menuHome:
                     return true;
                 case R.id.menuCart:
-                    // TODO
                     return true;
                 case R.id.menuAccount:
                     LOGGER.info("Transition to Profile activity was successful.");
@@ -64,5 +66,16 @@ public class HomePageClient extends AppCompatActivity {
             startActivity(intent);
             finish();
         }, SPLASH_SCREEN);
+    }
+
+    private void transitionToViewProductActivity() {
+        imageSyrup = findViewById(R.id.imageSyrup);
+
+        imageSyrup.setOnClickListener(v ->
+                new Handler().post(() -> {
+                    Intent intent = new Intent(HomePageClient.this, ViewSyrupProducts.class);
+                    startActivity(intent);
+                    finish();
+                }));
     }
 }
