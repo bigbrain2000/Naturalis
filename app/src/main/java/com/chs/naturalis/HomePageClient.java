@@ -49,12 +49,13 @@ public class HomePageClient extends AppCompatActivity {
 
     @SuppressLint("NonConstantResourceId")
     private void actionOnNavBarItemSelected() {
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menuHome:
                     return true;
                 case R.id.menuCart:
+                    LOGGER.info("Transition to Shopping Cart activity was successful.");
+                    transitionToShoppingCartActivity();
                     return true;
                 case R.id.menuAccount:
                     LOGGER.info("Transition to Profile activity was successful.");
@@ -93,7 +94,16 @@ public class HomePageClient extends AppCompatActivity {
                 }));
     }
 
+    private void transitionToShoppingCartActivity() {
+        new Handler().post(() -> {
+            Intent intent = new Intent(HomePageClient.this, ShoppingCart.class);
+            startActivity(intent);
+            finish();
+        });
+    }
+
     private void identifyTheFieldsById() {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         imageSyrup = findViewById(R.id.imageSyrup);
     }
 
