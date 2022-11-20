@@ -19,6 +19,11 @@ public class CuteElephantGifAnimation extends AppCompatActivity {
     private Animation cute_elephant_animation;
     private GifImageView gif_elephant;
 
+    /*
+       Field used for making a delay of 3s when switching the activities
+     */
+    private static final int SPLASH_SCREEN = 2000;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,6 @@ public class CuteElephantGifAnimation extends AppCompatActivity {
             Intent intent = new Intent(CuteElephantGifAnimation.this, HomePageClient.class);
             startActivity(intent);
             finish();
-        }, 4000);
+        }, SPLASH_SCREEN);
     }
 }
