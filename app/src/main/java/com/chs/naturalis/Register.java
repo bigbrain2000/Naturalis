@@ -1,15 +1,21 @@
 package com.chs.naturalis;
 
+import static android.graphics.Color.BLACK;
+import static android.view.Window.FEATURE_NO_TITLE;
+import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -38,7 +44,6 @@ public class Register extends AppCompatActivity {
     private EditText name, password, email, phoneNumber, address;
     private Button registerButton;
     private Button goBackToLogin;
-
     private DatabaseReference database;
     private User user;
     private boolean passwordVisible = false;
@@ -55,10 +60,19 @@ public class Register extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
 
-        //function executed only the first time ever the app is turned on
+        //Remove title bar
+        this.requestWindowFeature(FEATURE_NO_TITLE);
+
+        //Remove notification bar
+        this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
+
+        //set content view AFTER ABOVE sequence (to avoid crash)
+        this.setContentView(R.layout.activity_register);
+        super.onCreate(savedInstanceState);
+
+        //function executed only once when the app is turned on for the first time
+        //has the functionality of inserting the predefined admin in the DB
         insertPredefinedAdmin();
 
         registerUser();
@@ -66,6 +80,21 @@ public class Register extends AppCompatActivity {
         togglePasswordVisibility();
 
         pushSignInButton();
+
+        registerButton.setBackgroundColor(Color.parseColor("#2BCC6F"));
+        registerButton.setTextColor(BLACK);
+        goBackToLogin.setBackgroundColor(Color.parseColor("#2BCC6F"));
+        goBackToLogin.setTextColor(BLACK);
+
+        //EXDE BIG CAT MOMENT
+        MediaPlayer cat = MediaPlayer.create(this, R.raw.cat_sound);
+        name.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                cat.start();
+                return false;
+            }
+        });
     }
 
     private ArrayList<User> getUsersFromDatabase() {
@@ -118,6 +147,15 @@ public class Register extends AppCompatActivity {
         phoneNumber = findViewById(R.id.phoneNumber);
         address = findViewById(R.id.address);
         registerButton = findViewById(R.id.loginButton);
+        goBackToLogin = findViewById(R.id.goBackToLogin);
+    }
+
+    private void clearFields() {
+        name.getText().clear();
+        password.getText().clear();
+        email.getText().clear();
+        phoneNumber.getText().clear();
+        address.getText().clear();
     }
 
     private void insertUserIntoDb() {
@@ -142,6 +180,8 @@ public class Register extends AppCompatActivity {
             database.push().setValue(user);
             flag = true;
             LOGGER.info("User pushed to DB");
+
+            clearFields();
 
         } catch (FieldNotCompletedException e) {
             makeText(Register.this, "Fields are not completed!", LENGTH_LONG).show();
@@ -273,11 +313,9 @@ public class Register extends AppCompatActivity {
      * is change from Register to Login.
      */
     private void pushSignInButton() {
-        goBackToLogin = findViewById(R.id.goBackToLogin);
-
         goBackToLogin.setOnClickListener(v -> {
             new Handler().postDelayed(() -> {
-                Intent intent = new Intent(Register.this, Login.class);
+                Intent intent = new Intent(Register.this, LeavesGifAnimation.class);
                 startActivity(intent);
                 finish();
             }, SPLASH_SCREEN);

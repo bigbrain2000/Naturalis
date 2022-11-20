@@ -1,5 +1,7 @@
 package com.chs.naturalis;
 
+import static android.view.Window.FEATURE_NO_TITLE;
+import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 import static java.util.logging.Logger.getLogger;
@@ -38,8 +40,17 @@ public class ViewSyrupProducts extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+        //Remove title bar
+        this.requestWindowFeature(FEATURE_NO_TITLE);
+
+        //Remove notification bar
+        this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
+
+        //set content view AFTER ABOVE sequence (to avoid crash)
         setContentView(R.layout.activity_view_syrup_products);
+
+        super.onCreate(savedInstanceState);
 
         identifyTheFieldsById();
 

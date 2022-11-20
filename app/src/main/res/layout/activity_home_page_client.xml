@@ -127,13 +127,13 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/imageSyrup"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="8dp"
                     android:contentDescription="@string/app_name"
                     android:padding="8dp"
-                    android:src="@drawable/sirop"
-                    android:id="@+id/imageSyrup" />
+                    android:src="@drawable/sirop" />
 
                 <TextView
                     android:layout_width="match_parent"

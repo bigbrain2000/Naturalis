@@ -1,5 +1,7 @@
 package com.chs.naturalis;
 
+import static android.view.Window.FEATURE_NO_TITLE;
+import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 import static java.util.logging.Logger.getLogger;
@@ -7,6 +9,8 @@ import static java.util.logging.Logger.getLogger;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -26,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class Login extends AppCompatActivity {
 
     private Button registerButton;
@@ -37,13 +43,23 @@ public class Login extends AppCompatActivity {
     private final ArrayList<User> userList = new ArrayList<>();
     private boolean flag = true;
     private static final User loggedUser = new User();
+    private final String USER_DATABASE_NAME = "User";
 
     private static final Logger LOGGER = getLogger(Login.class.getName());
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        //Remove title bar
+        this.requestWindowFeature(FEATURE_NO_TITLE);
+
+        //Remove notification bar
+        this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
+
+        //set content view AFTER ABOVE sequence (to avoid crash)
         setContentView(R.layout.activity_login);
+
+        super.onCreate(savedInstanceState);
 
         switchActivityToRegister();
 
@@ -68,8 +84,7 @@ public class Login extends AppCompatActivity {
      * @return the found list.
      */
     private ArrayList<User> getUsersFromDatabase() {
-        final String userDatabaseName = "User";
-        database = FirebaseDatabase.getInstance().getReference().child(userDatabaseName);
+        database = FirebaseDatabase.getInstance().getReference().child(USER_DATABASE_NAME);
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
@@ -159,7 +174,7 @@ public class Login extends AppCompatActivity {
                 if (!flag)
                     checkAllFieldsAreCompleted(email, password);
                 if (value == 1) {
-                    Intent intent = new Intent(Login.this, HomePageClient.class);
+                    Intent intent = new Intent(Login.this, CuteElephantGifAnimation.class);
                     startActivity(intent);
                     finish();
                 }
