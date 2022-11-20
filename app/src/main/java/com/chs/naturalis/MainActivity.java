@@ -1,7 +1,5 @@
 package com.chs.naturalis;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,12 +8,15 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private Animation topAnimation, bottomAnimation;
     private ImageView logoNameImage, logoTreeImage;
 
     private static final int SPLASH_SCREEN = 3000; //3s
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

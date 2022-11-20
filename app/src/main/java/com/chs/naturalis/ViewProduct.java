@@ -1,5 +1,7 @@
 package com.chs.naturalis;
 
+import static android.view.MotionEvent.ACTION_DOWN;
+import static android.view.MotionEvent.ACTION_UP;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 import static com.chs.naturalis.ViewSyrupProducts.getProductName;
@@ -11,8 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.widget.EditText;
+import android.view.MotionEvent;
 import android.widget.TextView;
 
 import com.chs.naturalis.model.Product;
@@ -31,6 +32,9 @@ public class ViewProduct extends AppCompatActivity {
     private TextView category, name, price, description;
     private final List<Product> productList = new ArrayList<>();
     private DatabaseReference database;
+    private final String DATABASE_NAME = "Product";
+    private float x1, x2, y1, y2;
+
     private static final Logger LOGGER = getLogger(ViewProduct.class.getName());
 
     @Override
@@ -40,11 +44,14 @@ public class ViewProduct extends AppCompatActivity {
 
         identifyTheFieldsById();
 
+        viewProduct();
+    }
+
+    private void viewProduct() {
         //Take the product name when the client clicked on in it within the ViewSyrupProducts class
         String productName = getProductName();
 
-        final String databaseName = "Product";
-        database = FirebaseDatabase.getInstance().getReference().child(databaseName);
+        database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
 
         database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("SetTextI18n")
@@ -81,7 +88,6 @@ public class ViewProduct extends AppCompatActivity {
                 makeText(ViewProduct.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
-
     }
 
     private void identifyTheFieldsById() {
@@ -89,5 +95,25 @@ public class ViewProduct extends AppCompatActivity {
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
         description = findViewById(R.id.description);
+    }
+
+    public boolean onTouchEvent(MotionEvent touch) {
+        switch (touch.getAction()) {
+            case ACTION_DOWN:
+                x1 = touch.getX();
+                y1 = touch.getY();
+                break;
+            case ACTION_UP:
+                x2 = touch.getX();
+                y2 = touch.getY();
+
+                if (x1 < x2) {
+                    Intent intent = new Intent(ViewProduct.this, ViewSyrupProducts.class);
+                    startActivity(intent);
+                }
+                break;
+        }
+
+        return false;
     }
 }

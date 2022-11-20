@@ -1,5 +1,8 @@
 package com.chs.naturalis;
 
+import static android.view.Window.FEATURE_NO_TITLE;
+import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,14 +19,20 @@ public class HomePageAdmin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+        //Remove title bar
+        this.requestWindowFeature(FEATURE_NO_TITLE);
+
+        //Remove notification bar
+        this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
+
+        //set content view AFTER ABOVE sequence (to avoid crash)
         setContentView(R.layout.activity_home_page_admin);
+
+        super.onCreate(savedInstanceState);
 
         transitionToAddProductActivity();
         pressLogoutButton();
-
-
-
     }
     private void transitionToAddProductActivity() {
         addLinearLayout=findViewById(R.id.layoutAddProduct);

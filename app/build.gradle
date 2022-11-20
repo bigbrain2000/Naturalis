@@ -42,4 +42,7 @@ dependencies {
 
     // Email
     implementation 'com.sun.mail:javax.mail:1.6.2'
+
+    // GIF
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 }
