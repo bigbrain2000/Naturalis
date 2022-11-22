@@ -8,6 +8,7 @@ import static com.chs.naturalis.Login.getLoggedUser;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -71,7 +72,7 @@ public class Profile extends AppCompatActivity {
         phoneNumber.setText(user.getPhoneNumber());
         address.setText(user.getAddress());
     }
-    
+
     @SuppressLint("NonConstantResourceId")
     private void actionOnNavBarItemSelected() {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -126,9 +127,39 @@ public class Profile extends AppCompatActivity {
                     Intent intent = new Intent(Profile.this, ShoppingCart.class);
                     startActivity(intent);
                 }
+
+                if (x1 > x2) {
+                    showAlertBoxForLogout();
+
+                }
+
                 break;
         }
 
         return false;
+    }
+
+    /**
+     * Defined an alert box in case the user wants to logout from the app.
+     * Yes, he is redirected to Login page.
+     * No, he stays in the same activity.
+     */
+    private void showAlertBoxForLogout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Profile.this);
+
+        builder.setMessage("Do you want to exit the application?");
+        builder.setTitle("Alert");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            Intent intent = new Intent(Profile.this, Login.class);
+            startActivity(intent);
+        });
+
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.cancel();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

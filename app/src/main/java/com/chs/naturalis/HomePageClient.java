@@ -7,6 +7,7 @@ import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +48,11 @@ public class HomePageClient extends AppCompatActivity {
         transitionToViewProductActivity();
     }
 
+    private void identifyTheFieldsById() {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        imageSyrup = findViewById(R.id.imageSyrup);
+    }
+
     @SuppressLint("NonConstantResourceId")
     private void actionOnNavBarItemSelected() {
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -62,7 +68,7 @@ public class HomePageClient extends AppCompatActivity {
                     transitionToProfileActivity();
                     return true;
                 case R.id.menuLogout:
-                    transitionToLoginActivity();
+                    showAlertBoxForLogout();
                     return true;
             }
             return false;
@@ -72,14 +78,6 @@ public class HomePageClient extends AppCompatActivity {
     private void transitionToProfileActivity() {
         new Handler().post(() -> {
             Intent intent = new Intent(HomePageClient.this, Profile.class);
-            startActivity(intent);
-            finish();
-        });
-    }
-
-    private void transitionToLoginActivity() {
-        new Handler().post(() -> {
-            Intent intent = new Intent(HomePageClient.this, Login.class);
             startActivity(intent);
             finish();
         });
@@ -102,9 +100,28 @@ public class HomePageClient extends AppCompatActivity {
         });
     }
 
-    private void identifyTheFieldsById() {
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        imageSyrup = findViewById(R.id.imageSyrup);
+    /**
+     * Defined an alert box in case the user wants to logout from the app.
+     * Yes, he is redirected to Login page.
+     * No, he stays in the same activity.
+     */
+    private void showAlertBoxForLogout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(HomePageClient.this);
+
+        builder.setMessage("Do you want to exit the application?");
+        builder.setTitle("Alert");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            Intent intent = new Intent(HomePageClient.this, Login.class);
+            startActivity(intent);
+        });
+
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.cancel();
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     /**
