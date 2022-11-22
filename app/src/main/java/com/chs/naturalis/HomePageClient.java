@@ -107,8 +107,9 @@ public class HomePageClient extends AppCompatActivity {
         imageSyrup = findViewById(R.id.imageSyrup);
     }
 
-//TODO: slide right to go to cart, on slide left there is nothing
-
+    /**
+     * Sliding right opens the {@link ShoppingCart} activity.
+     */
     public boolean onTouchEvent(MotionEvent touch) {
         switch (touch.getAction()) {
             case ACTION_DOWN:
@@ -120,8 +121,8 @@ public class HomePageClient extends AppCompatActivity {
                 y2 = touch.getY();
 
                 if (x1 > x2) {
-//                    Intent intent = new Intent(HomePageClient.this, Cart.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(HomePageClient.this, ShoppingCart.class);
+                    startActivity(intent);
                 }
                 break;
         }

@@ -29,12 +29,12 @@ import java.util.logging.Logger;
 public class ViewSyrupProducts extends AppCompatActivity {
 
     private ListView productListView;
+
     private DatabaseReference database;
     private final List<Product> productList = new ArrayList<>();
     private final List<Product> productList2 = new ArrayList<>();
     private static String productName;
     private final String DATABASE_NAME = "Product";
-    private static final int SPLASH_SCREEN = 10;
 
     private static final Logger LOGGER = getLogger(ViewSyrupProducts.class.getName());
 
@@ -57,6 +57,10 @@ public class ViewSyrupProducts extends AppCompatActivity {
         setListViewItems();
 
         setActionOnItemClicked();
+    }
+
+    private void identifyTheFieldsById() {
+        productListView = findViewById(R.id.productListView);
     }
 
     /**
@@ -85,11 +89,11 @@ public class ViewSyrupProducts extends AppCompatActivity {
                         //get the name of the selected item at the clicked position
                         productName = (String) adapterView.getItemAtPosition(position);
 
-                        new Handler().postDelayed(() -> {
+                        new Handler().post(() -> {
                             Intent intent = new Intent(ViewSyrupProducts.this, ViewProduct.class);
                             startActivity(intent);
                             finish();
-                        }, SPLASH_SCREEN);
+                        });
                         LOGGER.info("Transition to ViewProduct was made.");
                     });
                 } else {
@@ -103,10 +107,6 @@ public class ViewSyrupProducts extends AppCompatActivity {
                 makeText(ViewSyrupProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
-    }
-
-    private void identifyTheFieldsById() {
-        productListView = findViewById(R.id.productListView);
     }
 
     /**
@@ -134,7 +134,9 @@ public class ViewSyrupProducts extends AppCompatActivity {
                     //Retrieve the products from database and create a list with their names.
                     List<String> productsNameList = new ArrayList<>();
                     for (Product product : productList) {
-                        productsNameList.add(product.getName());
+                        if (product.getQuantity() > 0) {
+                            productsNameList.add(product.getName());
+                        }
                     }
 
                     //Set the listview items as the productsNameList objects.

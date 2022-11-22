@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,14 +53,7 @@ public class Profile extends AppCompatActivity {
         actionOnNavBarItemSelected();
         setTextFieldsWithUserData(user);
 
-        profileFrame.setVisibility(100);
-    }
-
-    private void setTextFieldsWithUserData(User user) {
-        name.setText(user.getName());
-        email.setText(user.getEmail());
-        phoneNumber.setText(user.getPhoneNumber());
-        address.setText(user.getAddress());
+        profileFrame.setVisibility(View.VISIBLE);
     }
 
     private void identifyTheUserFieldsById() {
@@ -70,6 +64,14 @@ public class Profile extends AppCompatActivity {
         profileFrame = findViewById(R.id.profileFrame);
     }
 
+
+    private void setTextFieldsWithUserData(User user) {
+        name.setText(user.getName());
+        email.setText(user.getEmail());
+        phoneNumber.setText(user.getPhoneNumber());
+        address.setText(user.getAddress());
+    }
+    
     @SuppressLint("NonConstantResourceId")
     private void actionOnNavBarItemSelected() {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -108,8 +110,7 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-
-    //TODO: slide left to go to cart, slide right to go to logout and define an alert box for it
+    //TODO:  slide right to go to logout and define an alert box for it
 
     public boolean onTouchEvent(MotionEvent touch) {
         switch (touch.getAction()) {
@@ -121,9 +122,9 @@ public class Profile extends AppCompatActivity {
                 x2 = touch.getX();
                 y2 = touch.getY();
 
-                if (x1 > x2) {
-//                    Intent intent = new Intent(Profile.this, Logout.class);
-//                    startActivity(intent);
+                if (x1 < x2) {
+                    Intent intent = new Intent(Profile.this, ShoppingCart.class);
+                    startActivity(intent);
                 }
                 break;
         }
