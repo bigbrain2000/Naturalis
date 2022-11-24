@@ -35,181 +35,60 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:overScrollMode="never"
-        android:scrollbars="none"
+
+    <LinearLayout
+        android:layout_width="408dp"
+        android:layout_height="545dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="85dp">
+
+        <ListView
+            android:id="@+id/productListView"
+            android:layout_width="397dp"
+            android:layout_height="575dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="70dp"
+            android:choiceMode="singleChoice">
+
+
+        </ListView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green"
+        android:ems="12"
+        android:text="Logout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutHeader"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.99"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.992" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:id="@+id/layoutAddProduct"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@id/layoutViewProduct"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_add_product" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/add"
-                    android:textColor="@color/gray"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutViewProduct"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/layoutAddProduct"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_view_product" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/view"
-                    android:textColor="@color/gray"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutUpdateProduct"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@id/layoutViewProduct"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layoutAddProduct">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_edit_product" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/edit"
-                    android:textColor="@color/gray"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutDeleteProduct"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="196dp"
-                android:background="@drawable/white_rectangle_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="15dp"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.511"
-                app:layout_constraintStart_toEndOf="@id/layoutAddProduct"
-                app:layout_constraintTop_toTopOf="@id/layoutViewProduct">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_margin="8dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_delete_product" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/delete"
-                    android:textColor="@color/gray"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@id/layoutDeleteProduct"
-                app:layout_constraintTop_toBottomOf="@id/layoutUpdateProduct"
-                android:paddingTop="100dp"
-                tools:ignore="MissingConstraints">
-
-                <Button
-                    android:id="@+id/logoutButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/green"
-                    android:ems="12"
-                    android:text="Logout"
-                    tools:layout_editor_absoluteX="222dp"
-                    tools:layout_editor_absoluteY="107dp" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-    </ScrollView>
+    <Button
+        android:id="@+id/addProductButton"
+        android:layout_width="174dp"
+        android:layout_height="46dp"
+        android:backgroundTint="@color/green"
+        android:ems="12"
+        android:text="Add Product"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.992"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 

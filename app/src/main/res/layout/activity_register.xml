@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background_body"
+    android:background="@color/green_light"
     tools:context=".Register"
     tools:ignore="HardcodedText"
     tools:layout_editor_absoluteX="3dp"
@@ -42,113 +42,229 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="308dp"
-        android:layout_height="58dp"
-        android:ems="10"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="32dp"
         android:hint="Name"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textColorHint="#A7FFEB"
-        android:textDirection="ltr"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219" />
+        app:startIconDrawable="@drawable/ic_person">
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="310dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="120dp"
-        android:autofillHints="no"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:textColor="@color/black"
-        android:textColorHint="#A7FFEB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341"
-        tools:ignore="TextContrastCheck" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="310dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="300dp"
-        android:ems="10"
-        android:hint="Address"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:minHeight="48dp"
-        android:textAlignment="textStart"
-        android:textColorHint="#A7FFEB"
-        android:textDirection="ltr"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.454" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="308dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="50dp"
-        android:drawableEnd="@drawable/ic_baseline_visibility_off_24"
-        android:ems="10"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="32dp"
         android:hint="Password"
-        android:importantForAutofill="no"
-        android:inputType="textWebPassword"
-        android:longClickable="false"
-        android:minHeight="48dp"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textColorHint="#A7FFEB"
-        android:textDirection="ltr"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29" />
+        app:startIconDrawable="@drawable/ic_lock">
 
-    <EditText
-        android:id="@+id/phoneNumber"
-        android:layout_width="311dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="250dp"
-        android:ems="10"
-        android:hint="Phone number"
-        android:importantForAutofill="no"
-        android:inputType="phone"
-        android:minHeight="48dp"
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textColorHint="#A7FFEB"
-        android:textDirection="ltr"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Email"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
+        app:startIconDrawable="@drawable/ic_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Phone number"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_phone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="470dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Address"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_home">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/name"-->
+<!--        android:layout_width="308dp"-->
+<!--        android:layout_height="58dp"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Name"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:inputType="text"-->
+<!--        android:minHeight="48dp"-->
+<!--        android:textAlignment="textStart"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textColorHint="#A7FFEB"-->
+<!--        android:textDirection="ltr"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.219" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/email"-->
+<!--        android:layout_width="310dp"-->
+<!--        android:layout_height="51dp"-->
+<!--        android:layout_marginTop="120dp"-->
+<!--        android:autofillHints="no"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Email"-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:minHeight="48dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textColorHint="#A7FFEB"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.504"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.341"-->
+<!--        tools:ignore="TextContrastCheck" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/address"-->
+<!--        android:layout_width="310dp"-->
+<!--        android:layout_height="59dp"-->
+<!--        android:layout_marginTop="300dp"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Address"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:inputType="text"-->
+<!--        android:minHeight="48dp"-->
+<!--        android:textAlignment="textStart"-->
+<!--        android:textColorHint="#A7FFEB"-->
+<!--        android:textDirection="ltr"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.514"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.454" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/password"-->
+<!--        android:layout_width="308dp"-->
+<!--        android:layout_height="55dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:drawableEnd="@drawable/ic_baseline_visibility_off_24"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Password"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:inputType="textWebPassword"-->
+<!--        android:longClickable="false"-->
+<!--        android:minHeight="48dp"-->
+<!--        android:textAlignment="textStart"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textColorHint="#A7FFEB"-->
+<!--        android:textDirection="ltr"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.29" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/phoneNumber"-->
+<!--        android:layout_width="311dp"-->
+<!--        android:layout_height="54dp"-->
+<!--        android:layout_marginTop="250dp"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Phone number"-->
+<!--        android:importantForAutofill="no"-->
+<!--        android:inputType="phone"-->
+<!--        android:minHeight="48dp"-->
+<!--        android:textAlignment="textStart"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textColorHint="#A7FFEB"-->
+<!--        android:textDirection="ltr"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.51"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.342" />-->
 
     <Button
         android:id="@+id/loginButton"
