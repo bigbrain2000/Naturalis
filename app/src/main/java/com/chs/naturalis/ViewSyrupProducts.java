@@ -134,7 +134,7 @@ public class ViewSyrupProducts extends AppCompatActivity {
                     //Retrieve the products from database and create a list with their names.
                     List<String> productsNameList = new ArrayList<>();
                     for (Product product : productList) {
-                        if (product.getQuantity() > 0) {
+                        if (product.getQuantity() > 0 && product.getCategory().equals("Syrup")) {
                             productsNameList.add(product.getName());
                         }
                     }
