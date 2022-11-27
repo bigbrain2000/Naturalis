@@ -51,11 +51,6 @@ public class HomePageClient extends AppCompatActivity {
         transitionToViewTeaProductActivity();
     }
 
-    private void identifyTheFieldsById() {
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        imageSyrup = findViewById(R.id.imageSyrup);
-    }
-
     @SuppressLint("NonConstantResourceId")
     private void actionOnNavBarItemSelected() {
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -117,7 +112,8 @@ public class HomePageClient extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         imageSyrup = findViewById(R.id.imageSyrup);
         layoutTea = findViewById(R.id.layoutTea);
-}
+    }
+
     /**
      * Defined an alert box in case the user wants to logout from the app.
      * Yes, he is redirected to Login page.
