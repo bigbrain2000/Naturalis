@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.chs.naturalis.model.Product;
@@ -62,7 +61,7 @@ public class HomePageAdmin extends AppCompatActivity {
     }
 
     private void identifyTheFieldsById() {
-        productListView = findViewById(R.id.productListView);
+        productListView = findViewById(R.id.syrupProductListView);
     }
 
     private void transitionToAddProductActivity() {

@@ -1,5 +1,3 @@
-
-
 package com.chs.naturalis;
 
 import static android.view.Window.FEATURE_NO_TITLE;
@@ -28,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ViewTeaProducts extends AppCompatActivity {
+public class SyrupProducts extends AppCompatActivity {
 
     private ListView productListView;
 
@@ -38,7 +36,7 @@ public class ViewTeaProducts extends AppCompatActivity {
     private static String productName;
     private final String DATABASE_NAME = "Product";
 
-    private static final Logger LOGGER = getLogger(ViewTeaProducts.class.getName());
+    private static final Logger LOGGER = getLogger(SyrupProducts.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +48,7 @@ public class ViewTeaProducts extends AppCompatActivity {
         this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
 
         //set content view AFTER ABOVE sequence (to avoid crash)
-        setContentView(R.layout.activity_view_tea_products);
+        setContentView(R.layout.activity_syrup_products);
 
         super.onCreate(savedInstanceState);
 
@@ -62,7 +60,7 @@ public class ViewTeaProducts extends AppCompatActivity {
     }
 
     private void identifyTheFieldsById() {
-        productListView = findViewById(R.id.productListView);
+        productListView = findViewById(R.id.syrupProductListView);
     }
 
     /**
@@ -92,7 +90,7 @@ public class ViewTeaProducts extends AppCompatActivity {
                         productName = (String) adapterView.getItemAtPosition(position);
 
                         new Handler().post(() -> {
-                            Intent intent = new Intent(ViewTeaProducts.this, ViewProduct.class);
+                            Intent intent = new Intent(SyrupProducts.this, ViewSyrupProduct.class);
                             startActivity(intent);
                             finish();
                         });
@@ -106,7 +104,7 @@ public class ViewTeaProducts extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(ViewTeaProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(SyrupProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
@@ -136,13 +134,13 @@ public class ViewTeaProducts extends AppCompatActivity {
                     //Retrieve the products from database and create a list with their names.
                     List<String> productsNameList = new ArrayList<>();
                     for (Product product : productList) {
-                        if (product.getQuantity() > 0 && product.getCategory().equals("Tea")) {
+                        if (product.getQuantity() > 0 && product.getCategory().equals("Syrup")) {
                             productsNameList.add(product.getName());
                         }
                     }
 
                     //Set the listview items as the productsNameList objects.
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(ViewTeaProducts.this,
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(SyrupProducts.this,
                             android.R.layout.simple_list_item_multiple_choice, productsNameList);
                     productListView.setAdapter(adapter);
                 } else {
@@ -153,7 +151,7 @@ public class ViewTeaProducts extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(ViewTeaProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(SyrupProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
@@ -163,7 +161,7 @@ public class ViewTeaProducts extends AppCompatActivity {
      *
      * @return The name of the selected item.
      */
-    public static String getProductName() {
+    public static String getSyrupProductName() {
         return productName;
     }
 }

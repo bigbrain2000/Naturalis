@@ -6,7 +6,7 @@ import static android.view.Window.FEATURE_NO_TITLE;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
-import static com.chs.naturalis.ViewSyrupProducts.getProductName;
+import static com.chs.naturalis.SyrupProducts.getSyrupProductName;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ViewProduct extends AppCompatActivity {
+public class ViewSyrupProduct extends AppCompatActivity {
 
     private TextView category, name, price, description;
     private BottomNavigationView bottomNavigationView;
@@ -44,7 +44,7 @@ public class ViewProduct extends AppCompatActivity {
     private final String DATABASE_NAME = "Product";
     private float x1, x2, y1, y2;
 
-    private static final Logger LOGGER = getLogger(ViewProduct.class.getName());
+    private static final Logger LOGGER = getLogger(ViewSyrupProduct.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class ViewProduct extends AppCompatActivity {
         this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
 
         //set content view AFTER ABOVE sequence (to avoid crash)
-        setContentView(R.layout.activity_view_product);
+        setContentView(R.layout.activity_view_syrup_product);
 
         super.onCreate(savedInstanceState);
 
@@ -72,12 +72,12 @@ public class ViewProduct extends AppCompatActivity {
         price = findViewById(R.id.price);
         description = findViewById(R.id.description);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-      //  insertBoughtProductIntoDb();
+        //  insertBoughtProductIntoDb();
     }
 
     private void viewProduct() {
         //Take the product name when the client clicked on in it within the ViewSyrupProducts class
-        String productName = getProductName();
+        String productName = getSyrupProductName();
 
         database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
 
@@ -113,7 +113,7 @@ public class ViewProduct extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(ViewProduct.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(ViewSyrupProduct.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
@@ -135,14 +135,14 @@ public class ViewProduct extends AppCompatActivity {
     }
 
     private void insertBoughtProductIntoDb() {
-        String productName = getProductName();
+        String productName = getSyrupProductName();
         User user = Login.getLoggedUser();
         String userEmail = user.getEmail();
         final String emailSubstring = "@yahoo.com";
 
         database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
 
-        if( userEmail != null && userEmail.length() > 0 ) {
+        if (userEmail != null && userEmail.length() > 0) {
             userEmail = userEmail.substring(0, userEmail.length() - emailSubstring.length());
         }
 
@@ -154,15 +154,15 @@ public class ViewProduct extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        productListCart.add(snapshot.getValue(Product.class));
-                    }
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    productListCart.add(snapshot.getValue(Product.class));
+                }
 
-                    for (Product product : productListCart) {
-                        if (product.getName().equals(productName)) {
-                            databaseCart.push().setValue(product);
-                        }
+                for (Product product : productListCart) {
+                    if (product.getName().equals(productName)) {
+                        databaseCart.push().setValue(product);
                     }
+                }
             }
 
             @Override
@@ -174,7 +174,7 @@ public class ViewProduct extends AppCompatActivity {
 
     private void transitionToHomePageClientActivity() {
         new Handler().post(() -> {
-            Intent intent = new Intent(ViewProduct.this, HomePageClient.class);
+            Intent intent = new Intent(ViewSyrupProduct.this, HomePageClient.class);
             startActivity(intent);
             finish();
         });
@@ -192,7 +192,7 @@ public class ViewProduct extends AppCompatActivity {
                 y2 = touch.getY();
 
                 if (x1 < x2) {
-                    Intent intent = new Intent(ViewProduct.this, ViewSyrupProducts.class);
+                    Intent intent = new Intent(ViewSyrupProduct.this, SyrupProducts.class);
                     startActivity(intent);
                 }
                 break;
