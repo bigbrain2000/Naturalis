@@ -39,7 +39,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ViewTeaProducts"
+            android:name=".TeaProducts"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -68,14 +68,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ViewSyrupProducts"
+            android:name=".SyrupProducts"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ViewProduct"
+            android:name=".ViewSyrupProduct"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
