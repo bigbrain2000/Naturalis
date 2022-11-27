@@ -1,3 +1,5 @@
+
+
 package com.chs.naturalis;
 
 import static android.view.Window.FEATURE_NO_TITLE;
@@ -26,9 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ViewSyrupProducts extends AppCompatActivity {
+public class TeaProducts extends AppCompatActivity {
 
-    private ListView productListView;
+    private ListView teaProductListView;
 
     private DatabaseReference database;
     private final List<Product> productList = new ArrayList<>();
@@ -36,7 +38,7 @@ public class ViewSyrupProducts extends AppCompatActivity {
     private static String productName;
     private final String DATABASE_NAME = "Product";
 
-    private static final Logger LOGGER = getLogger(ViewSyrupProducts.class.getName());
+    private static final Logger LOGGER = getLogger(TeaProducts.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class ViewSyrupProducts extends AppCompatActivity {
         this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
 
         //set content view AFTER ABOVE sequence (to avoid crash)
-        setContentView(R.layout.activity_view_syrup_products);
+        setContentView(R.layout.activity_tea_products);
 
         super.onCreate(savedInstanceState);
 
@@ -60,7 +62,7 @@ public class ViewSyrupProducts extends AppCompatActivity {
     }
 
     private void identifyTheFieldsById() {
-        productListView = findViewById(R.id.productListView);
+        teaProductListView = findViewById(R.id.teaProductListView);
     }
 
     /**
@@ -84,13 +86,13 @@ public class ViewSyrupProducts extends AppCompatActivity {
                         LOGGER.info("List is not empty.");
                     }
 
-                    productListView.setOnItemClickListener((adapterView, view, position, id) -> {
+                    teaProductListView.setOnItemClickListener((adapterView, view, position, id) -> {
 
                         //get the name of the selected item at the clicked position
                         productName = (String) adapterView.getItemAtPosition(position);
 
                         new Handler().post(() -> {
-                            Intent intent = new Intent(ViewSyrupProducts.this, ViewProduct.class);
+                            Intent intent = new Intent(TeaProducts.this, ViewSyrupProduct.class);
                             startActivity(intent);
                             finish();
                         });
@@ -104,7 +106,7 @@ public class ViewSyrupProducts extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(ViewSyrupProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(TeaProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
@@ -134,15 +136,15 @@ public class ViewSyrupProducts extends AppCompatActivity {
                     //Retrieve the products from database and create a list with their names.
                     List<String> productsNameList = new ArrayList<>();
                     for (Product product : productList) {
-                        if (product.getQuantity() > 0 && product.getCategory().equals("Syrup")) {
+                        if (product.getQuantity() > 0 && product.getCategory().equals("Tea")) {
                             productsNameList.add(product.getName());
                         }
                     }
 
                     //Set the listview items as the productsNameList objects.
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(ViewSyrupProducts.this,
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(TeaProducts.this,
                             android.R.layout.simple_list_item_multiple_choice, productsNameList);
-                    productListView.setAdapter(adapter);
+                    teaProductListView.setAdapter(adapter);
                 } else {
                     LOGGER.info("DataSnapshot error");
                 }
@@ -151,17 +153,17 @@ public class ViewSyrupProducts extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(ViewSyrupProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(TeaProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
 
     /**
-     * Getter for returning the name of the selected item from the Syrup list.
+     * Getter for returning the name of the selected item from the Tea list.
      *
      * @return The name of the selected item.
      */
-    public static String getProductName() {
+    public static String getTeaProductName() {
         return productName;
     }
 }
