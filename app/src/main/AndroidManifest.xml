@@ -25,6 +25,20 @@
         android:theme="@style/Theme.Naturalis"
         tools:targetApi="31">
         <activity
+            android:name=".ViewSupplementsProduct"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Supplements"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ViewTeaProducts"
             android:exported="false">
             <meta-data
