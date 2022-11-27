@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +25,7 @@ public class HomePageClient extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
     private ImageView imageSyrup;
+    private LinearLayout layoutTea;
     private float x1, x2, y1, y2;
 
     private static final Logger LOGGER = getLogger(HomePageClient.class.getName());
@@ -45,12 +47,8 @@ public class HomePageClient extends AppCompatActivity {
         identifyTheFieldsById();
 
         actionOnNavBarItemSelected();
-        transitionToViewProductActivity();
-    }
-
-    private void identifyTheFieldsById() {
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        imageSyrup = findViewById(R.id.imageSyrup);
+        transitionToViewSyrupProductActivity();
+        transitionToViewTeaProductActivity();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -83,10 +81,19 @@ public class HomePageClient extends AppCompatActivity {
         });
     }
 
-    private void transitionToViewProductActivity() {
+    private void transitionToViewSyrupProductActivity() {
         imageSyrup.setOnClickListener(v ->
                 new Handler().post(() -> {
                     Intent intent = new Intent(HomePageClient.this, ViewSyrupProducts.class);
+                    startActivity(intent);
+                    finish();
+                }));
+    }
+
+    private void transitionToViewTeaProductActivity() {
+        layoutTea.setOnClickListener(v ->
+                new Handler().post(() -> {
+                    Intent intent = new Intent(HomePageClient.this, ViewTeaProducts.class);
                     startActivity(intent);
                     finish();
                 }));
@@ -98,6 +105,13 @@ public class HomePageClient extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+    }
+
+
+    private void identifyTheFieldsById() {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        imageSyrup = findViewById(R.id.imageSyrup);
+        layoutTea = findViewById(R.id.layoutTea);
     }
 
     /**
