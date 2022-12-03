@@ -36,8 +36,11 @@ public class HomePageAdmin extends AppCompatActivity {
 
     private DatabaseReference database;
     private final List<Product> productList = new ArrayList<>();
+    private final List<Product> productList2 = new ArrayList<>();
+    private static String productName;
     private final String DATABASE_NAME = "Product";
     private static final int SPLASH_SCREEN = 100;
+
 
     private static final Logger LOGGER = getLogger(HomePageAdmin.class.getName());
 
@@ -57,11 +60,12 @@ public class HomePageAdmin extends AppCompatActivity {
         identifyTheFieldsById();
         setListViewItems();
         transitionToAddProductActivity();
+        setActionOnItemClicked();
         pressLogoutButton();
     }
 
     private void identifyTheFieldsById() {
-        productListView = findViewById(R.id.syrupProductListView);
+        productListView = findViewById(R.id.productListView);
     }
 
     private void transitionToAddProductActivity() {
@@ -133,6 +137,61 @@ public class HomePageAdmin extends AppCompatActivity {
                 makeText(HomePageAdmin.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
+    }
+
+    /**
+     * A user click on an a chosen item from the list and he is gonna be redirected to the
+     * ViewProduct activity where he will see all the details about the selected product.
+     */
+    private void setActionOnItemClicked() {
+        database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    LOGGER.info("Product database has been retrieved.");
+                    productList2.clear();
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        productList2.add(snapshot.getValue(Product.class));
+                    }
+
+                    if (!productList2.isEmpty()) {
+                        LOGGER.info("List is not empty.");
+                    }
+
+                    productListView.setOnItemClickListener((adapterView, view, position, id) -> {
+
+                        //get the name of the selected item at the clicked position
+                        productName = (String) adapterView.getItemAtPosition(position);
+
+                        new Handler().post(() -> {
+                            Intent intent = new Intent(HomePageAdmin.this, AdminViewProduct.class);
+                            startActivity(intent);
+                            finish();
+                        });
+                        LOGGER.info("Transition to ViewProduct was made.");
+                    });
+                } else {
+                    LOGGER.info("DataSnapshot error");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                LOGGER.info("Error on retrieving data from database.");
+                makeText(HomePageAdmin.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+            }
+        });
+    }
+
+    /**
+     * Getter for returning the name of the selected item from the list.
+     *
+     * @return The name of the selected item.
+     */
+    public static String getProductName() {
+        return productName;
     }
 
 }
