@@ -62,6 +62,9 @@ public class SupplementsProducts extends AppCompatActivity {
         setActionOnItemClicked();
     }
 
+    /**
+     * Identify the activity field by their id.
+     */
     private void identifyTheFieldsById() {
         supplementsProductListView = findViewById(R.id.supplementsProductListView);
     }

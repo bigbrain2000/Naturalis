@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ShoppingCart"
     tools:ignore="HardcodedText">
 
@@ -22,8 +22,8 @@
 
         <ListView
             android:id="@+id/shoppingCartListView"
-            android:layout_width="397dp"
-            android:layout_height="487dp"
+            android:layout_width="match_parent"
+            android:layout_height="391dp"
             android:layout_marginTop="50dp"
             android:choiceMode="singleChoice" />
 
@@ -32,6 +32,16 @@
             android:layout_width="211dp"
             android:layout_height="62dp"
             android:text="Scan QRCode"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buyItemsButton"
+            android:layout_width="358dp"
+            android:layout_height="54dp"
+            android:text="Buy"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +62,8 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="394dp"
+            android:layout_height="108dp"
             android:backgroundTint="@color/green"
             app:itemIconSize="30dp"
             app:itemIconTint="@color/green"
@@ -61,6 +71,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/navigation_menu"
             tools:ignore="MissingConstraints" />
-    </LinearLayout>
 
+    </LinearLayout>
 </HorizontalScrollView>

@@ -50,11 +50,22 @@ public class HomePageClient extends AppCompatActivity {
         transitionToViewSupplementsProductActivity();
     }
 
+    /**
+     * Identify the activity field by their id.
+     */
+    private void identifyTheFieldsById() {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        imageSyrup = findViewById(R.id.imageSyrup);
+        imageTea = findViewById(R.id.imageTea);
+        imageSupplements = findViewById(R.id.imageSupplements);
+    }
+
     @SuppressLint("NonConstantResourceId")
     private void actionOnNavBarItemSelected() {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menuHome:
+                    //Already in this activity, just return true
                     return true;
                 case R.id.menuCart:
                     LOGGER.info("Transition to Shopping Cart activity was successful.");
@@ -115,14 +126,6 @@ public class HomePageClient extends AppCompatActivity {
         });
     }
 
-
-    private void identifyTheFieldsById() {
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        imageSyrup = findViewById(R.id.imageSyrup);
-        imageTea = findViewById(R.id.imageTea);
-        imageSupplements = findViewById(R.id.imageSupplements);
-    }
-
     /**
      * Defined an alert box in case the user wants to logout from the app.
      * Yes, he is redirected to Login page.
@@ -139,9 +142,7 @@ public class HomePageClient extends AppCompatActivity {
             startActivity(intent);
         });
 
-        builder.setNegativeButton("No", (dialog, which) -> {
-            dialog.cancel();
-        });
+        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

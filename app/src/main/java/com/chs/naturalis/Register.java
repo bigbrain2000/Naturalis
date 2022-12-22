@@ -88,13 +88,23 @@ public class Register extends AppCompatActivity {
 
         //EXDE BIG CAT MOMENT
         MediaPlayer cat = MediaPlayer.create(this, R.raw.cat_sound);
-        name.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                cat.start();
-                return false;
-            }
+        name.setOnTouchListener((view, motionEvent) -> {
+            cat.start();
+            return false;
         });
+    }
+
+    /**
+     * Identify the activity field by their id.
+     */
+    private void identifyTheUserFieldsById() {
+        name = findViewById(R.id.name);
+        password = findViewById(R.id.password);
+        email = findViewById(R.id.email);
+        phoneNumber = findViewById(R.id.phoneNumber);
+        address = findViewById(R.id.address);
+        registerButton = findViewById(R.id.loginButton);
+        goBackToLogin = findViewById(R.id.goBackToLogin);
     }
 
     private ArrayList<User> getUsersFromDatabase() {
@@ -138,16 +148,6 @@ public class Register extends AppCompatActivity {
             if (flag)
                 transitionToLoginPage();
         });
-    }
-
-    private void identifyTheUserFieldsById() {
-        name = findViewById(R.id.name);
-        password = findViewById(R.id.password);
-        email = findViewById(R.id.email);
-        phoneNumber = findViewById(R.id.phoneNumber);
-        address = findViewById(R.id.address);
-        registerButton = findViewById(R.id.loginButton);
-        goBackToLogin = findViewById(R.id.goBackToLogin);
     }
 
     private void clearFields() {

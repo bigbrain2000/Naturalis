@@ -9,8 +9,6 @@ import static java.util.logging.Logger.getLogger;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -29,8 +27,6 @@ import com.google.firebase.database.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.logging.Logger;
-
-import pl.droidsonroids.gif.GifImageView;
 
 public class Login extends AppCompatActivity {
 
