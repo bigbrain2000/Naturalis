@@ -4,6 +4,7 @@ import static android.view.Window.FEATURE_NO_TITLE;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
+import static com.chs.naturalis.Register.encodePassword;
 import static java.util.logging.Logger.getLogger;
 
 import android.content.Intent;
@@ -119,10 +120,14 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
+        String text_email = email.getText().toString().trim();
+        String text_password = password.getText().toString().trim();
+        String encoded_password = encodePassword(text_email, text_password);
+
         final ArrayList<User> usersFromDatabase = getUsersFromDatabase();
 
         for (User user : usersFromDatabase) {
-            if (Objects.equals(email.getText().toString(), user.getEmail()) && Objects.equals(password.getText().toString(), user.getPassword()))
+            if (Objects.equals(text_email, user.getEmail()) && Objects.equals(encoded_password, user.getPassword()))
                 if (user.getRole().equals("Client")) {
                     setLoggedUserFields(user);
                     return 1;

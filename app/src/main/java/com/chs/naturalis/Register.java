@@ -5,6 +5,7 @@ import static android.view.Window.FEATURE_NO_TITLE;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
@@ -15,7 +16,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -33,6 +33,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -162,8 +164,12 @@ public class Register extends AppCompatActivity {
         try {
             user = new User();
             //get the values from the text fields
+            String text_email = email.getText().toString().trim();
+            String text_password = password.getText().toString().trim();
+            String encoded_password = encodePassword(text_email, text_password);
+
             user.setName(name.getText().toString().trim());
-            user.setPassword(password.getText().toString().trim());
+            user.setPassword(encoded_password);
             user.setEmail(email.getText().toString().trim());
             user.setPhoneNumber(phoneNumber.getText().toString().trim());
             user.setAddress(address.getText().toString().trim());
@@ -365,4 +371,28 @@ public class Register extends AppCompatActivity {
             }
         }
     }
+
+    @NotNull
+    public static String encodePassword(@NotNull String salt,
+                                        @NotNull String password) {
+        MessageDigest md = getMessageDigest();
+        md.update(salt.getBytes(UTF_8));
+
+        byte[] hashedPassword = md.digest(password.getBytes(UTF_8));
+
+        // This is the way a password should be encoded when checking the credentials
+        //to be able to save in JSON format
+        return new String(hashedPassword, UTF_8).replace("\"", "");
+    }
+
+    private static MessageDigest getMessageDigest() {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-512");
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("SHA-512 does not exist!");
+        }
+        return md;
+    }
+
 }
