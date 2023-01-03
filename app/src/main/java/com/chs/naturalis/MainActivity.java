@@ -15,8 +15,10 @@ public class MainActivity extends AppCompatActivity {
     private Animation topAnimation, bottomAnimation;
     private ImageView logoNameImage, logoTreeImage;
 
-    private static final int SPLASH_SCREEN = 3000; //3s
-
+    /*
+    Field used for making a delay of 3s when switching the activities
+    */
+    private static final int SPLASH_SCREEN = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         logoNameImage.setAnimation(bottomAnimation);
 
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(MainActivity.this, Register.class);
+            Intent intent = new Intent(MainActivity.this, Login.class);
             startActivity(intent);
             finish();
         }, SPLASH_SCREEN);

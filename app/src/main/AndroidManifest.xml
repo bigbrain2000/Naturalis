@@ -25,7 +25,21 @@
         android:theme="@style/Theme.Naturalis"
         tools:targetApi="31">
         <activity
-            android:name=".AdminViewProduct"
+            android:name=".ViewOilProduct"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".OilProducts"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ViewProductAdmin"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

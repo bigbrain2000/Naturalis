@@ -6,7 +6,7 @@ import static android.view.Window.FEATURE_NO_TITLE;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
-import static com.chs.naturalis.SyrupProducts.getSyrupProductName;
+import static com.chs.naturalis.OilProducts.getOilProductName;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ViewSyrupProduct extends AppCompatActivity {
+public class ViewOilProduct extends AppCompatActivity {
 
     private TextView category, name, price, description;
     private BottomNavigationView bottomNavigationView;
@@ -44,7 +44,7 @@ public class ViewSyrupProduct extends AppCompatActivity {
     private final String DATABASE_NAME = "Product";
     private float x1, x2, y1, y2;
 
-    private static final Logger LOGGER = getLogger(ViewSyrupProduct.class.getName());
+    private static final Logger LOGGER = getLogger(ViewOilProduct.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class ViewSyrupProduct extends AppCompatActivity {
         this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
 
         //set content view AFTER ABOVE sequence (to avoid crash)
-        setContentView(R.layout.activity_view_syrup_product);
+        setContentView(R.layout.activity_view_oil_product);
 
         super.onCreate(savedInstanceState);
 
@@ -78,11 +78,11 @@ public class ViewSyrupProduct extends AppCompatActivity {
     }
 
     /**
-     * View all the details about the syrup product selected by the user.
+     * View all the details about the oil product selected by the user.
      */
     private void viewProduct() {
-        //Take the product name when the client clicked on in it within the ViewSyrupProducts class
-        String productName = getSyrupProductName();
+        //Take the product name when the client clicked on in it within the ViewOilProducts class
+        String productName = getOilProductName();
 
         database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
 
@@ -118,7 +118,7 @@ public class ViewSyrupProduct extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(ViewSyrupProduct.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(ViewOilProduct.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
@@ -144,7 +144,7 @@ public class ViewSyrupProduct extends AppCompatActivity {
      * it will be inserted in the database.
      */
     private void insertBoughtProductIntoDb() {
-        String productName = getSyrupProductName();
+        String productName = getOilProductName();
         User user = Login.getLoggedUser();
         String userEmail = user.getEmail();
         final String emailSubstring = "@yahoo.com";
@@ -181,14 +181,14 @@ public class ViewSyrupProduct extends AppCompatActivity {
 
     private void transitionToHomePageClientActivity() {
         new Handler().post(() -> {
-            Intent intent = new Intent(ViewSyrupProduct.this, HomePageClient.class);
+            Intent intent = new Intent(ViewOilProduct.this, HomePageClient.class);
             startActivity(intent);
             finish();
         });
     }
 
     /**
-     * Sliding left opens the {@link SyrupProducts} activity.
+     * Sliding left opens the {@link OilProducts} activity.
      */
     public boolean onTouchEvent(MotionEvent touch) {
         switch (touch.getAction()) {
@@ -201,7 +201,7 @@ public class ViewSyrupProduct extends AppCompatActivity {
                 y2 = touch.getY();
 
                 if (x1 < x2) {
-                    Intent intent = new Intent(ViewSyrupProduct.this, SyrupProducts.class);
+                    Intent intent = new Intent(ViewOilProduct.this, OilProducts.class);
                     startActivity(intent);
                 }
                 break;

@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class HomePageClient extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private ImageView imageSyrup, imageTea, imageSupplements;
+    private ImageView imageSyrup, imageTea, imageSupplements, imageEssentialOils;
     private float x1, x2, y1, y2;
 
     private static final Logger LOGGER = getLogger(HomePageClient.class.getName());
@@ -45,9 +45,22 @@ public class HomePageClient extends AppCompatActivity {
         identifyTheFieldsById();
 
         actionOnNavBarItemSelected();
+
         transitionToViewSyrupProductActivity();
         transitionToViewTeaProductActivity();
         transitionToViewSupplementsProductActivity();
+        transitionToViewOilProductActivity();
+    }
+
+    /**
+     * Identify the activity field by their id.
+     */
+    private void identifyTheFieldsById() {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        imageSyrup = findViewById(R.id.imageSyrup);
+        imageTea = findViewById(R.id.imageTea);
+        imageSupplements = findViewById(R.id.imageSupplements);
+        imageEssentialOils = findViewById(R.id.imageEssentialOils);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -55,6 +68,7 @@ public class HomePageClient extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.menuHome:
+                    //Already in this activity, just return true
                     return true;
                 case R.id.menuCart:
                     LOGGER.info("Transition to Shopping Cart activity was successful.");
@@ -107,20 +121,21 @@ public class HomePageClient extends AppCompatActivity {
                 }));
     }
 
+    private void transitionToViewOilProductActivity() {
+        imageEssentialOils.setOnClickListener(v ->
+                new Handler().post(() -> {
+                    Intent intent = new Intent(HomePageClient.this, OilProducts.class);
+                    startActivity(intent);
+                    finish();
+                }));
+    }
+
     private void transitionToShoppingCartActivity() {
         new Handler().post(() -> {
             Intent intent = new Intent(HomePageClient.this, ShoppingCart.class);
             startActivity(intent);
             finish();
         });
-    }
-
-
-    private void identifyTheFieldsById() {
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        imageSyrup = findViewById(R.id.imageSyrup);
-        imageTea = findViewById(R.id.imageTea);
-        imageSupplements = findViewById(R.id.imageSupplements);
     }
 
     /**
@@ -139,9 +154,7 @@ public class HomePageClient extends AppCompatActivity {
             startActivity(intent);
         });
 
-        builder.setNegativeButton("No", (dialog, which) -> {
-            dialog.cancel();
-        });
+        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

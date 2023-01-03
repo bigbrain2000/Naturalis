@@ -1,22 +1,19 @@
 package com.chs.naturalis;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-
 import static android.view.Window.FEATURE_NO_TITLE;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 import static java.util.logging.Logger.getLogger;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import androidx.annotation.NonNull;
 
 import com.chs.naturalis.model.Product;
 import com.google.firebase.database.DataSnapshot;
@@ -29,9 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class TeaProducts extends AppCompatActivity {
+public class OilProducts extends AppCompatActivity {
 
-    private ListView teaProductListView;
+    private ListView productListView;
 
     private DatabaseReference database;
     private final List<Product> productList = new ArrayList<>();
@@ -39,7 +36,7 @@ public class TeaProducts extends AppCompatActivity {
     private static String productName;
     private final String DATABASE_NAME = "Product";
 
-    private static final Logger LOGGER = getLogger(TeaProducts.class.getName());
+    private static final Logger LOGGER = getLogger(OilProducts.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,7 @@ public class TeaProducts extends AppCompatActivity {
         this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
 
         //set content view AFTER ABOVE sequence (to avoid crash)
-        setContentView(R.layout.activity_tea_products);
+        setContentView(R.layout.activity_oil_products);
 
         super.onCreate(savedInstanceState);
 
@@ -66,7 +63,7 @@ public class TeaProducts extends AppCompatActivity {
      * Identify the activity field by their id.
      */
     private void identifyTheFieldsById() {
-        teaProductListView = findViewById(R.id.teaProductListView);
+        productListView = findViewById(R.id.oilProductListView);
     }
 
     /**
@@ -90,13 +87,13 @@ public class TeaProducts extends AppCompatActivity {
                         LOGGER.info("List is not empty.");
                     }
 
-                    teaProductListView.setOnItemClickListener((adapterView, view, position, id) -> {
+                    productListView.setOnItemClickListener((adapterView, view, position, id) -> {
 
                         //get the name of the selected item at the clicked position
                         productName = (String) adapterView.getItemAtPosition(position);
 
                         new Handler().post(() -> {
-                            Intent intent = new Intent(TeaProducts.this, ViewTeaProduct.class);
+                            Intent intent = new Intent(OilProducts.this, ViewOilProduct.class);
                             startActivity(intent);
                             finish();
                         });
@@ -110,7 +107,7 @@ public class TeaProducts extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(TeaProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(OilProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
@@ -140,15 +137,15 @@ public class TeaProducts extends AppCompatActivity {
                     //Retrieve the products from database and create a list with their names.
                     List<String> productsNameList = new ArrayList<>();
                     for (Product product : productList) {
-                        if (product.getQuantity() > 0 && product.getCategory().equals("Tea")) {
+                        if (product.getQuantity() > 0 && product.getCategory().equals("Oil")) {
                             productsNameList.add(product.getName());
                         }
                     }
 
                     //Set the listview items as the productsNameList objects.
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(TeaProducts.this,
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(OilProducts.this,
                             android.R.layout.simple_list_item_multiple_choice, productsNameList);
-                    teaProductListView.setAdapter(adapter);
+                    productListView.setAdapter(adapter);
                 } else {
                     LOGGER.info("DataSnapshot error");
                 }
@@ -157,17 +154,17 @@ public class TeaProducts extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(TeaProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(OilProducts.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
 
     /**
-     * Getter for returning the name of the selected item from the Tea list.
+     * Getter for returning the name of the selected item from the Oils list.
      *
      * @return The name of the selected item.
      */
-    public static String getTeaProductName() {
+    public static String getOilProductName() {
         return productName;
     }
 }

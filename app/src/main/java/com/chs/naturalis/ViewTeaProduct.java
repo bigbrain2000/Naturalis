@@ -66,17 +66,22 @@ public class ViewTeaProduct extends AppCompatActivity {
         actionOnNavBarItemSelected();
     }
 
+    /**
+     * Identify the activity field by their id.
+     */
     private void identifyTheFieldsById() {
         category = findViewById(R.id.category);
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
         description = findViewById(R.id.description);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        //  insertBoughtProductIntoDb();
     }
 
+    /**
+     * View all the details about the syrup product selected by the user.
+     */
     private void viewProduct() {
-        //Take the product name when the client clicked on in it within the ViewTeaProduct class
+        //Take the product name when the client clicked on in it within the ViewSyrupProducts class
         String productName = getTeaProductName();
 
         database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
@@ -118,6 +123,7 @@ public class ViewTeaProduct extends AppCompatActivity {
         });
     }
 
+
     @SuppressLint("NonConstantResourceId")
     private void actionOnNavBarItemSelected() {
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -134,13 +140,15 @@ public class ViewTeaProduct extends AppCompatActivity {
         });
     }
 
+    /**
+     * By the user email, who is unique, all the items selected by him to be added to cart
+     * it will be inserted in the database.
+     */
     private void insertBoughtProductIntoDb() {
         String productName = getTeaProductName();
         User user = Login.getLoggedUser();
         String userEmail = user.getEmail();
         final String emailSubstring = "@yahoo.com";
-
-        database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
 
         if (userEmail != null && userEmail.length() > 0) {
             userEmail = userEmail.substring(0, userEmail.length() - emailSubstring.length());
@@ -180,6 +188,9 @@ public class ViewTeaProduct extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sliding left opens the {@link TeaProducts} activity.
+     */
     public boolean onTouchEvent(MotionEvent touch) {
         switch (touch.getAction()) {
             case ACTION_DOWN:

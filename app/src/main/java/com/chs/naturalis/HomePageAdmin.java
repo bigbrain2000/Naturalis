@@ -4,18 +4,18 @@ import static android.view.Window.FEATURE_NO_TITLE;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
-
 import static java.util.logging.Logger.getLogger;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.chs.naturalis.model.Product;
 import com.google.firebase.database.DataSnapshot;
@@ -34,13 +34,11 @@ public class HomePageAdmin extends AppCompatActivity {
     private Button logoutButton;
     private Button addProductButton;
 
-    private DatabaseReference database;
     private final List<Product> productList = new ArrayList<>();
     private final List<Product> productList2 = new ArrayList<>();
-    private static String productName;
     private final String DATABASE_NAME = "Product";
-    private static final int SPLASH_SCREEN = 100;
-
+    private static String productName;
+    private DatabaseReference database;
 
     private static final Logger LOGGER = getLogger(HomePageAdmin.class.getName());
 
@@ -57,39 +55,37 @@ public class HomePageAdmin extends AppCompatActivity {
         setContentView(R.layout.activity_home_page_admin);
 
         super.onCreate(savedInstanceState);
+
         identifyTheFieldsById();
+
         setListViewItems();
+
         transitionToAddProductActivity();
-        setActionOnItemClicked();
+
         pressLogoutButton();
+
+        setActionOnItemClicked();
     }
 
+    /**
+     * Identify the activity field by their id.
+     */
     private void identifyTheFieldsById() {
         productListView = findViewById(R.id.productListView);
+        addProductButton = findViewById(R.id.addProductButton);
+        logoutButton = findViewById(R.id.logoutButton);
     }
 
     private void transitionToAddProductActivity() {
-        addProductButton = findViewById(R.id.addProductButton);
-
-        addProductButton.setOnClickListener(v -> {
-            new Handler().postDelayed(() -> {
-                Intent intent = new Intent(HomePageAdmin.this, AddProduct.class);
-                startActivity(intent);
-                finish();
-            }, SPLASH_SCREEN);
-        });
+        addProductButton.setOnClickListener(v -> new Handler().post(() -> {
+            Intent intent = new Intent(HomePageAdmin.this, AddProduct.class);
+            startActivity(intent);
+            finish();
+        }));
     }
 
     private void pressLogoutButton() {
-        logoutButton = findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener(v -> {
-            new Handler().postDelayed(() -> {
-                Intent intent = new Intent(HomePageAdmin.this, Login.class);
-                startActivity(intent);
-                finish();
-            }, SPLASH_SCREEN);
-        });
-
+        logoutButton.setOnClickListener(v -> showAlertBoxForLogout());
     }
 
     /**
@@ -117,9 +113,7 @@ public class HomePageAdmin extends AppCompatActivity {
                     //Retrieve the products from database and create a list with their names.
                     List<String> productsNameList = new ArrayList<>();
                     for (Product product : productList) {
-                      //  if (product.getQuantity() > 0) {
-                            productsNameList.add(product.getName());
-                       // }
+                        productsNameList.add(product.getName());
                     }
 
                     //Set the listview items as the productsNameList objects.
@@ -166,7 +160,7 @@ public class HomePageAdmin extends AppCompatActivity {
                         productName = (String) adapterView.getItemAtPosition(position);
 
                         new Handler().post(() -> {
-                            Intent intent = new Intent(HomePageAdmin.this, AdminViewProduct.class);
+                            Intent intent = new Intent(HomePageAdmin.this, ViewProductAdmin.class);
                             startActivity(intent);
                             finish();
                         });
@@ -186,12 +180,33 @@ public class HomePageAdmin extends AppCompatActivity {
     }
 
     /**
-     * Getter for returning the name of the selected item from the list.
+     * Defined an alert box in case the user wants to logout from the app.
+     * Yes, he is redirected to Login page.
+     * No, he stays in the same activity.
+     */
+    private void showAlertBoxForLogout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(HomePageAdmin.this);
+
+        builder.setMessage("Do you want to exit the application?");
+        builder.setTitle("Alert");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            Intent intent = new Intent(HomePageAdmin.this, Login.class);
+            startActivity(intent);
+        });
+
+        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    /**
+     * Getter for returning the name of the selected item from the products list.
      *
      * @return The name of the selected item.
      */
     public static String getProductName() {
         return productName;
     }
-
 }
