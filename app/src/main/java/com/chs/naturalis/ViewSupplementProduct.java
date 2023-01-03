@@ -66,15 +66,20 @@ public class ViewSupplementProduct extends AppCompatActivity {
         actionOnNavBarItemSelected();
     }
 
+    /**
+     * Identify the activity field by their id.
+     */
     private void identifyTheFieldsById() {
         category = findViewById(R.id.category);
         name = findViewById(R.id.name);
         price = findViewById(R.id.price);
         description = findViewById(R.id.description);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        //  insertBoughtProductIntoDb();
     }
 
+    /**
+     * View all the details about the supplement product selected by the user.
+     */
     private void viewProduct() {
         //Take the product name when the client clicked on in it within the ViewSupplementProduct class
         String productName = getSupplementsProductName();
@@ -134,13 +139,15 @@ public class ViewSupplementProduct extends AppCompatActivity {
         });
     }
 
+    /**
+     * By the user email, who is unique, all the items selected by him to be added to cart
+     * it will be inserted in the database.
+     */
     private void insertBoughtProductIntoDb() {
         String productName = getSupplementsProductName();
         User user = Login.getLoggedUser();
         String userEmail = user.getEmail();
         final String emailSubstring = "@yahoo.com";
-
-        database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
 
         if (userEmail != null && userEmail.length() > 0) {
             userEmail = userEmail.substring(0, userEmail.length() - emailSubstring.length());
@@ -180,6 +187,9 @@ public class ViewSupplementProduct extends AppCompatActivity {
         });
     }
 
+    /**
+     * Sliding left opens the {@link SupplementsProducts} activity.
+     */
     public boolean onTouchEvent(MotionEvent touch) {
         switch (touch.getAction()) {
             case ACTION_DOWN:

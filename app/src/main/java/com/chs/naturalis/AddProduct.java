@@ -41,11 +41,10 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
 
     private DatabaseReference database;
     private Product product;
+    private final String DATABASE_NAME = "Product";
+    private final ArrayList<Product> productList = new ArrayList<>();
 
     private static final Logger LOGGER = getLogger(AddProduct.class.getName());
-    private static final int SPLASH_SCREEN = 100;
-
-    private final ArrayList<Product> productList = new ArrayList<>();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -62,19 +61,18 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
 
         super.onCreate(savedInstanceState);
 
+        identifyTheProductFieldsById();
+
         setSpinner();
+
         addProduct();
+
         //insertPredefinedProduct();
+
         pushBackButton();
     }
 
     private void addProduct() {
-        final String productDatabaseName = "Product";
-
-        identifyTheProductFieldsById();
-
-        database = FirebaseDatabase.getInstance().getReference().child(productDatabaseName);
-
         addProductButton.setOnClickListener(view -> insertProductIntoDb());
     }
 
@@ -84,13 +82,16 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
         quantity = findViewById(R.id.productQuantity);
         description = findViewById(R.id.productDescription);
         addProductButton = findViewById(R.id.addProductButton);
+        goBackToAdminPage = findViewById(R.id.goBackToAdminPage);
+        category = findViewById(R.id.spinner1);
     }
 
     private void insertProductIntoDb() {
         try {
             checkAllFieldsAreCompleted(name, price, quantity, description);
-            final String databaseName = "Product";
-            database = FirebaseDatabase.getInstance().getReference().child(databaseName);
+
+            database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
+
             database.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -118,10 +119,8 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
                 product.setPrice(priceDouble);
                 int quantityInt = Integer.parseInt(quantity.getText().toString().trim());
                 product.setQuantity(quantityInt);
-                product.setDescription(description.getText().toString().trim());
                 product.setCategory(categoryType);
                 product.setCurrency("lei");
-
 
                 LOGGER.info("Product added successfully.");
                 makeText(AddProduct.this, "Product added successfully", LENGTH_LONG).show();
@@ -133,10 +132,7 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
         }
     }
 
-    private void checkAllFieldsAreCompleted(@NotNull EditText name,
-                                            @NotNull EditText price,
-                                            @NotNull EditText quantity,
-                                            @NotNull EditText description) throws FieldNotCompletedException {
+    private void checkAllFieldsAreCompleted(@NotNull EditText name, @NotNull EditText price, @NotNull EditText quantity, @NotNull EditText description) throws FieldNotCompletedException {
         checkFieldIsCompleted(name);
         checkFieldIsCompleted(price);
         checkFieldIsCompleted(quantity);
@@ -151,23 +147,19 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     private void setSpinner() {
-        category = findViewById(R.id.spinner1);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.categories, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         category.setAdapter(adapter);
         category.setOnItemSelectedListener(this);
     }
 
     private void pushBackButton() {
-        goBackToAdminPage = findViewById(R.id.goBackToAdminPage);
-
         goBackToAdminPage.setOnClickListener(v -> {
-            new Handler().postDelayed(() -> {
+            new Handler().post(() -> {
                 Intent intent = new Intent(AddProduct.this, HomePageAdmin.class);
                 startActivity(intent);
                 finish();
-            }, SPLASH_SCREEN);
+            });
             LOGGER.info("Transition to homepage was made.");
         });
     }
@@ -183,11 +175,9 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     private void insertPredefinedProduct() {
-        Product product = new Product(1, "Linden tea", 22d, 11, "Linden tea has been used in folk medicine across cultures to relieve high blood pressure, calm anxiety, and soothe digestion.", "Tea" , "lei");
+        Product product = new Product(1, "Linden tea", 22d, 11, "Linden tea has been used in folk medicine across cultures to relieve high blood pressure, calm anxiety, and soothe digestion.", "Tea", "lei");
 
-
-        final String productDatabaseName = "Product";
-        database = FirebaseDatabase.getInstance().getReference().child(productDatabaseName);
+        database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
         database.push().setValue(product);
     }
 }

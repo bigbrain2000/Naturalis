@@ -59,6 +59,9 @@ public class SyrupProducts extends AppCompatActivity {
         setActionOnItemClicked();
     }
 
+    /**
+     * Identify the activity field by their id.
+     */
     private void identifyTheFieldsById() {
         productListView = findViewById(R.id.syrupProductListView);
     }

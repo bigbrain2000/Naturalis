@@ -57,6 +57,9 @@ public class Profile extends AppCompatActivity {
         profileFrame.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Identify the activity field by their id.
+     */
     private void identifyTheUserFieldsById() {
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
@@ -83,12 +86,14 @@ public class Profile extends AppCompatActivity {
                     transitionToHomeActivity();
                     return true;
                 case R.id.menuCart:
-                    // TODO
+                    LOGGER.info("Transition to Shopping cart activity was successful.");
+                    transitionToShoppingCartActivity();
                     return true;
                 case R.id.menuAccount:
+                    //Already in this activity, just return true
                     return true;
                 case R.id.menuLogout:
-                    transitionToLoginActivity();
+                    showAlertBoxForLogout();
                     return true;
             }
             return false;
@@ -103,16 +108,18 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-    private void transitionToLoginActivity() {
+    private void transitionToShoppingCartActivity() {
         new Handler().post(() -> {
-            Intent intent = new Intent(Profile.this, Login.class);
+            Intent intent = new Intent(Profile.this, ShoppingCart.class);
             startActivity(intent);
             finish();
         });
     }
 
-    //TODO:  slide right to go to logout and define an alert box for it
-
+    /**
+     * Sliding right opens the {@link Login} activity.
+     * Sliding left opens the {@link ShoppingCart} activity.
+     */
     public boolean onTouchEvent(MotionEvent touch) {
         switch (touch.getAction()) {
             case ACTION_DOWN:
@@ -130,9 +137,7 @@ public class Profile extends AppCompatActivity {
 
                 if (x1 > x2) {
                     showAlertBoxForLogout();
-
                 }
-
                 break;
         }
 
@@ -155,9 +160,7 @@ public class Profile extends AppCompatActivity {
             startActivity(intent);
         });
 
-        builder.setNegativeButton("No", (dialog, which) -> {
-            dialog.cancel();
-        });
+        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
