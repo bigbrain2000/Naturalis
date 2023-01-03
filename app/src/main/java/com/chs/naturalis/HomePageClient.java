@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class HomePageClient extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private ImageView imageSyrup, imageTea, imageSupplements;
+    private ImageView imageSyrup, imageTea, imageSupplements, imageEssentialOils;
     private float x1, x2, y1, y2;
 
     private static final Logger LOGGER = getLogger(HomePageClient.class.getName());
@@ -45,9 +45,11 @@ public class HomePageClient extends AppCompatActivity {
         identifyTheFieldsById();
 
         actionOnNavBarItemSelected();
+
         transitionToViewSyrupProductActivity();
         transitionToViewTeaProductActivity();
         transitionToViewSupplementsProductActivity();
+        transitionToViewOilProductActivity();
     }
 
     /**
@@ -58,6 +60,7 @@ public class HomePageClient extends AppCompatActivity {
         imageSyrup = findViewById(R.id.imageSyrup);
         imageTea = findViewById(R.id.imageTea);
         imageSupplements = findViewById(R.id.imageSupplements);
+        imageEssentialOils = findViewById(R.id.imageEssentialOils);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -113,6 +116,15 @@ public class HomePageClient extends AppCompatActivity {
         imageSupplements.setOnClickListener(v ->
                 new Handler().post(() -> {
                     Intent intent = new Intent(HomePageClient.this, SupplementsProducts.class);
+                    startActivity(intent);
+                    finish();
+                }));
+    }
+
+    private void transitionToViewOilProductActivity() {
+        imageEssentialOils.setOnClickListener(v ->
+                new Handler().post(() -> {
+                    Intent intent = new Intent(HomePageClient.this, OilProducts.class);
                     startActivity(intent);
                     finish();
                 }));
