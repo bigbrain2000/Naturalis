@@ -127,8 +127,10 @@ public class ViewProductAdmin extends AppCompatActivity {
         adminNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.goBackButton:
-                    LOGGER.info("User bought a product");
                     transitionToHomePageAdminActivity();
+                    return true;
+                case R.id.addProductButton:
+                    transitionToAddProductActivity();
                     return true;
                 case R.id.logoutButton:
                     showAlertBoxForLogout();
@@ -141,6 +143,14 @@ public class ViewProductAdmin extends AppCompatActivity {
     private void transitionToHomePageAdminActivity() {
         new Handler().post(() -> {
             Intent intent = new Intent(ViewProductAdmin.this, HomePageAdmin.class);
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    private void transitionToAddProductActivity() {
+        new Handler().post(() -> {
+            Intent intent = new Intent(ViewProductAdmin.this, AddProduct.class);
             startActivity(intent);
             finish();
         });

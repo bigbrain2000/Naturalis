@@ -1,0 +1,16 @@
+
+~
+java:S1192m"hDefine a constant instead of duplicating this literal "Error on retrieving data from database." 4 times.(ÉÚÂù
+r	java:S116("XRename this field "DATABASE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»µâ÷ùÿÿÿÿ
+<
+java:S1170("!Make this final field static too.(»µâ÷ùÿÿÿÿ
+R
+java:S18743"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+R
+java:S18743"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+L
+java:S2696]"6Make the enclosing method "static" or remove this set.(ë®¿•
+J
+java:S1874_"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ
+m
+java:S3776v"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Ì¤Öıÿÿÿÿ

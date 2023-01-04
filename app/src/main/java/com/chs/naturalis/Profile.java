@@ -28,7 +28,7 @@ public class Profile extends AppCompatActivity {
 
     private TextView name, email, phoneNumber, address;
     private BottomNavigationView bottomNavigationView;
-    private ImageView profileFrame;
+    //private ImageView profileFrame;
 
     private float x1, x2, y1, y2;
 
@@ -54,7 +54,7 @@ public class Profile extends AppCompatActivity {
         actionOnNavBarItemSelected();
         setTextFieldsWithUserData(user);
 
-        profileFrame.setVisibility(View.VISIBLE);
+        //profileFrame.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -65,7 +65,7 @@ public class Profile extends AppCompatActivity {
         email = findViewById(R.id.email);
         phoneNumber = findViewById(R.id.phoneNumber);
         address = findViewById(R.id.address);
-        profileFrame = findViewById(R.id.profileFrame);
+       // profileFrame = findViewById(R.id.profileFrame);
     }
 
 

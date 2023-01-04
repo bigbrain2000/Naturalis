@@ -46,7 +46,6 @@ public class ViewTeaProduct extends AppCompatActivity {
 
     private static final Logger LOGGER = getLogger(ViewTeaProduct.class.getName());
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Remove title bar

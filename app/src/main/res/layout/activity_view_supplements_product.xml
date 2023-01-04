@@ -4,59 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/green_light"
     tools:context=".ViewSupplementProduct">
 
-    <TextView
-        android:id="@+id/category"
-        android:layout_width="163dp"
-        android:layout_height="41dp"
-        android:text="Category"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055"
-        tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="163dp"
-        android:layout_height="41dp"
-        android:text="Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253"
-        tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="163dp"
-        android:layout_height="41dp"
-        android:text="Price"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157"
-        tools:ignore="HardcodedText" />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="450dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/background_supplements"
+        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="163dp"
-        android:layout_height="41dp"
-        android:text="Description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363"
-        tools:ignore="HardcodedText" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="250dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:text="Category"
+            android:textStyle="italic"
+            android:textColor="@color/gray" />
+
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Category"
+            android:textSize="20dp"
+            android:importantForAutofill="no"
+            android:paddingLeft="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="320dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:text="Name"
+            android:textStyle="italic"
+            android:textColor="@color/gray" />
+        <TextView
+            android:id="@+id/name"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:hint="Name"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="390dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:text="Price"
+            android:textStyle="italic"
+            android:textColor="@color/gray" />
+        <TextView
+            android:id="@+id/price"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:hint="Price"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="460dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:text="Description"
+            android:textStyle="italic"
+            android:textColor="@color/gray" />
+        <TextView
+            android:id="@+id/description"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:hint="Description"
+            android:importantForAutofill="no" />
+    </LinearLayout>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

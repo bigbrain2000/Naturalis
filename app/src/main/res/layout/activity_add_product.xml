@@ -207,20 +207,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.291" />
 
-    <Button
-        android:id="@+id/goBackToAdminPage"
-        android:layout_width="89dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="400dp"
-        android:text="Back"
-        android:layout_marginBottom="4dp"
-        android:backgroundTint="@color/green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.841" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -246,5 +233,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.565"
         tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/adminNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/green"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/green"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/admin_navigation_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

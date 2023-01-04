@@ -1,6 +1,9 @@
-
-
 package com.chs.naturalis;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
 
 import static android.view.Window.FEATURE_NO_TITLE;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
@@ -9,13 +12,11 @@ import static android.widget.Toast.makeText;
 import static java.util.logging.Logger.getLogger;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.chs.naturalis.model.Product;
 import com.google.firebase.database.DataSnapshot;
@@ -95,7 +96,7 @@ public class TeaProducts extends AppCompatActivity {
                         productName = (String) adapterView.getItemAtPosition(position);
 
                         new Handler().post(() -> {
-                            Intent intent = new Intent(TeaProducts.this, ViewSyrupProduct.class);
+                            Intent intent = new Intent(TeaProducts.this, ViewTeaProduct.class);
                             startActivity(intent);
                             finish();
                         });

@@ -7,6 +7,7 @@ import static android.widget.Toast.makeText;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chs.exceptions.naturalis.FieldNotCompletedException;
 import com.chs.naturalis.model.Product;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +38,9 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
 
     private EditText name, price, quantity, description;
     private Spinner category;
-    private Button addProductButton, goBackToAdminPage;
+    private Button addProductButton;
     private String categoryType;
+    private BottomNavigationView adminNavigation;
 
     private DatabaseReference database;
     private Product product;
@@ -64,12 +67,38 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
         identifyTheProductFieldsById();
 
         setSpinner();
+        actionOnNavBarItemSelected();
 
         addProduct();
 
         //insertPredefinedProduct();
 
-        pushBackButton();
+
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    private void actionOnNavBarItemSelected() {
+        adminNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.goBackButton:
+                    transitionToHomeActivity();
+                    return true;
+                case R.id.addProductButton:
+                    return true;
+                case R.id.logoutButton:
+                    showAlertBoxForLogout();
+                    return true;
+            }
+            return false;
+        });
+    }
+
+    private void transitionToHomeActivity() {
+        new Handler().post(() -> {
+            Intent intent = new Intent(AddProduct.this, HomePageAdmin.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void addProduct() {
@@ -77,12 +106,12 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     private void identifyTheProductFieldsById() {
+        adminNavigation = findViewById(R.id.adminNavigation);
         name = findViewById(R.id.productName);
         price = findViewById(R.id.productPrice);
         quantity = findViewById(R.id.productQuantity);
         description = findViewById(R.id.productDescription);
         addProductButton = findViewById(R.id.addProductButton);
-        goBackToAdminPage = findViewById(R.id.goBackToAdminPage);
         category = findViewById(R.id.spinner1);
     }
 
@@ -153,16 +182,7 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
         category.setOnItemSelectedListener(this);
     }
 
-    private void pushBackButton() {
-        goBackToAdminPage.setOnClickListener(v -> {
-            new Handler().post(() -> {
-                Intent intent = new Intent(AddProduct.this, HomePageAdmin.class);
-                startActivity(intent);
-                finish();
-            });
-            LOGGER.info("Transition to homepage was made.");
-        });
-    }
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -179,5 +199,27 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
 
         database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
         database.push().setValue(product);
+    }
+
+    /**
+     * Defined an alert box in case the user wants to logout from the app.
+     * Yes, he is redirected to Login page.
+     * No, he stays in the same activity.
+     */
+    private void showAlertBoxForLogout() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddProduct.this);
+
+        builder.setMessage("Do you want to exit the application?");
+        builder.setTitle("Alert");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            Intent intent = new Intent(AddProduct.this, Login.class);
+            startActivity(intent);
+        });
+
+        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
