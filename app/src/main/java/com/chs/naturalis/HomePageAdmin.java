@@ -6,6 +6,7 @@ import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 import static java.util.logging.Logger.getLogger;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chs.naturalis.model.Product;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,8 +33,7 @@ import java.util.logging.Logger;
 public class HomePageAdmin extends AppCompatActivity {
 
     private ListView productListView;
-    private Button logoutButton;
-    private Button addProductButton;
+    private BottomNavigationView adminNavigation;
 
     private final List<Product> productList = new ArrayList<>();
     private final List<Product> productList2 = new ArrayList<>();
@@ -59,10 +60,7 @@ public class HomePageAdmin extends AppCompatActivity {
         identifyTheFieldsById();
 
         setListViewItems();
-
-        transitionToAddProductActivity();
-
-        pressLogoutButton();
+        actionOnNavBarItemSelected();
 
         setActionOnItemClicked();
     }
@@ -71,22 +69,37 @@ public class HomePageAdmin extends AppCompatActivity {
      * Identify the activity field by their id.
      */
     private void identifyTheFieldsById() {
+        adminNavigation = findViewById(R.id.adminNavigation);
         productListView = findViewById(R.id.productListView);
-        addProductButton = findViewById(R.id.addProductButton);
-        logoutButton = findViewById(R.id.logoutButton);
+
     }
 
+    @SuppressLint("NonConstantResourceId")
+    private void actionOnNavBarItemSelected() {
+        adminNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.goBackButton:
+                    return true;
+                case R.id.addProductButton:
+                    transitionToAddProductActivity();
+                    return true;
+                case R.id.logoutButton:
+                    showAlertBoxForLogout();
+                    return true;
+            }
+            return false;
+        });
+    }
+
+
     private void transitionToAddProductActivity() {
-        addProductButton.setOnClickListener(v -> new Handler().post(() -> {
+        new Handler().post(() -> {
             Intent intent = new Intent(HomePageAdmin.this, AddProduct.class);
             startActivity(intent);
             finish();
-        }));
+        });
     }
 
-    private void pressLogoutButton() {
-        logoutButton.setOnClickListener(v -> showAlertBoxForLogout());
-    }
 
     /**
      * Insert the products names from the database into the list view.

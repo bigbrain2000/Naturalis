@@ -7,32 +7,40 @@
     android:background="@color/green_light"
     tools:context=".ViewTeaProduct">
 
-<!--    <TextView-->
-<!--        android:id="@+id/category"-->
-<!--        android:layout_width="163dp"-->
-<!--        android:layout_height="41dp"-->
-<!--        android:text="Category"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.181"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.055"-->
-<!--        tools:ignore="HardcodedText" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/category"-->
+    <!--        android:layout_width="163dp"-->
+    <!--        android:layout_height="41dp"-->
+    <!--        android:text="Category"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.181"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.055"-->
+    <!--        tools:ignore="HardcodedText" />-->
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="450dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/background_tea"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:paddingLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="200dp"
+        android:paddingTop="250dp"
         tools:ignore="MissingConstraints">
-       <TextView
-           android:layout_width="70dp"
-           android:layout_height="36dp"
-           android:text="Category"
-           android:textStyle="italic"
-           android:textColor="@color/gray" />
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:text="Category"
+            android:textStyle="italic"
+            android:textColor="@color/gray" />
 
         <TextView
             android:id="@+id/category"
@@ -50,7 +58,7 @@
         android:paddingLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="270dp"
+        android:paddingTop="320dp"
         tools:ignore="MissingConstraints">
         <TextView
             android:layout_width="70dp"
@@ -74,7 +82,7 @@
         android:paddingLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="340dp"
+        android:paddingTop="390dp"
         tools:ignore="MissingConstraints">
         <TextView
             android:layout_width="70dp"
@@ -98,7 +106,7 @@
         android:paddingLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="410dp"
+        android:paddingTop="460dp"
         tools:ignore="MissingConstraints">
         <TextView
             android:layout_width="70dp"
@@ -117,44 +125,44 @@
             android:importantForAutofill="no" />
     </LinearLayout>
 
-<!--    <TextView-->
-<!--        android:id="@+id/name"-->
-<!--        android:layout_width="163dp"-->
-<!--        android:layout_height="41dp"-->
-<!--        android:text="Name"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.181"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.253"-->
-<!--        tools:ignore="HardcodedText" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/name"-->
+    <!--        android:layout_width="163dp"-->
+    <!--        android:layout_height="41dp"-->
+    <!--        android:text="Name"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.181"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.253"-->
+    <!--        tools:ignore="HardcodedText" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/price"-->
-<!--        android:layout_width="163dp"-->
-<!--        android:layout_height="41dp"-->
-<!--        android:text="Price"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.181"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.157"-->
-<!--        tools:ignore="HardcodedText" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/price"-->
+    <!--        android:layout_width="163dp"-->
+    <!--        android:layout_height="41dp"-->
+    <!--        android:text="Price"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.181"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.157"-->
+    <!--        tools:ignore="HardcodedText" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/description"-->
-<!--        android:layout_width="163dp"-->
-<!--        android:layout_height="41dp"-->
-<!--        android:text="Description"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.181"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.363"-->
-<!--        tools:ignore="HardcodedText" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/description"-->
+    <!--        android:layout_width="163dp"-->
+    <!--        android:layout_height="41dp"-->
+    <!--        android:text="Description"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.181"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.363"-->
+    <!--        tools:ignore="HardcodedText" />-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

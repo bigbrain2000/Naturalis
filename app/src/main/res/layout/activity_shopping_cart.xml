@@ -31,6 +31,7 @@
             android:id="@+id/scanQRButton"
             android:layout_width="211dp"
             android:layout_height="62dp"
+            android:backgroundTint="@color/green"
             android:text="Scan QRCode"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +42,7 @@
             android:id="@+id/buyItemsButton"
             android:layout_width="358dp"
             android:layout_height="54dp"
+            android:backgroundTint="@color/green"
             android:text="Buy"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,8 +64,8 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
-            android:layout_width="394dp"
-            android:layout_height="108dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:backgroundTint="@color/green"
             app:itemIconSize="30dp"
             app:itemIconTint="@color/green"

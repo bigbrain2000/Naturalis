@@ -5,7 +5,13 @@
         android:icon="@drawable/ic_home"
         android:title="@string/go_back"/>
 
+    <item android:id="@+id/addProductButton"
+        android:icon="@drawable/ic_add_product"
+        android:title="Add"/>
+
     <item android:id="@+id/logoutButton"
         android:icon="@drawable/ic_logout"
         android:title="@string/logout"/>
+
+
 </menu>
