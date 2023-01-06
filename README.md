@@ -55,6 +55,16 @@ SHIFT+F10
 ## Documentatie ##
 Documentatia aferenta proiectului o puteti gasi accesand urmatorul link: [Naturalis](https://docs.google.com/document/d/1cKbfp9swSNWMsSmmKeWu7cCoKPvOAVMR/edit?usp=sharing&ouid=100433574327862705292&rtpof=true&sd=true)
 
+## Scanarea codului QR pentru reduceri ##
+Aplicația Naturalis oferă o reducere de 20% la prețul produselor din coșul de cumpărături pentru clienții care posedă un fluturaș personalizat 
+oferit în campania de lansare.
+
+Scanarea codului QR este posibilă datorită activității: [ScanQRCode](https://github.com/bigbrain2000/Naturalis/blob/main/app/src/main/java/com/chs/naturalis/ScanQRCode.java).
+
+Fluturașul personalizat este:
+https://github.com/bigbrain2000/Naturalis/blob/main/app/src/main/res/drawable/fluturas.png
+
+res/drawable/fluturas.png
 ## Developeri ##
 [Mester Rebeca](https://github.com/RebecaMester)
 [Roncea Marius-Alexandru](https://github.com/bigbrain2000)
