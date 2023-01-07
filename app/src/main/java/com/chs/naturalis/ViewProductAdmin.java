@@ -7,7 +7,6 @@ import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 import static com.chs.naturalis.HomePageAdmin.getProductName;
-import static com.chs.naturalis.TeaProducts.getTeaProductName;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
@@ -16,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +42,10 @@ public class ViewProductAdmin extends AppCompatActivity {
     private float x1, x2, y1, y2;
     private final String DATABASE_NAME = "Product";
     private final List<Product> productList = new ArrayList<>();
+    private Button editProductButton, deleteProductButton;
+
+    //Take the product name when the client clicked on in it within the ViewSyrupProducts class
+    private final String PRODUCT_NAME = getProductName();
 
     private static final Logger LOGGER = getLogger(ViewProductAdmin.class.getName());
 
@@ -63,6 +67,8 @@ public class ViewProductAdmin extends AppCompatActivity {
         viewProduct();
 
         actionOnNavBarItemSelected();
+
+        setDeleteButtonAction();
     }
 
     /**
@@ -74,15 +80,14 @@ public class ViewProductAdmin extends AppCompatActivity {
         price = findViewById(R.id.price);
         description = findViewById(R.id.description);
         adminNavigationView = findViewById(R.id.adminNavigationView);
+        editProductButton = findViewById(R.id.editProductButton);
+        deleteProductButton = findViewById(R.id.deleteProductButton);
     }
 
     /**
      * View all the details about the syrup product selected by the user.
      */
     private void viewProduct() {
-        //Take the product name when the client clicked on in it within the ViewSyrupProducts class
-        String productName = getProductName();
-
         database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
 
         database.addValueEventListener(new ValueEventListener() {
@@ -102,7 +107,7 @@ public class ViewProductAdmin extends AppCompatActivity {
                     }
 
                     for (Product product : productList) {
-                        if (product.getName().equals(productName)) {
+                        if (product.getName().equals(PRODUCT_NAME)) {
                             name.setText(product.getName());
                             price.setText(product.getPrice() + " " + product.getCurrency());
                             category.setText(product.getCategory());
@@ -120,6 +125,57 @@ public class ViewProductAdmin extends AppCompatActivity {
                 makeText(ViewProductAdmin.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
+    }
+
+    /**
+     * Deletes the product from the database.
+     */
+    private void deleteProduct() {
+        database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    LOGGER.info("Product database has been retrieved.");
+                    productList.clear();
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        productList.add(snapshot.getValue(Product.class));
+                    }
+
+                    if (!productList.isEmpty()) {
+                        LOGGER.info("List is not empty.");
+                    }
+
+                    for (Product product : productList) {
+                        if (product.getName().equals(PRODUCT_NAME)) {
+                            productList.remove(product);
+                            LOGGER.info("Product" + PRODUCT_NAME + " has been deleted.");
+                        }
+                    }
+
+                    database.setValue(productList);
+                    LOGGER.info("Database has been updated.");
+                } else {
+                    LOGGER.info("DataSnapshot error.");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                LOGGER.info("Error on retrieving data from database.");
+                makeText(ViewProductAdmin.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+            }
+        });
+    }
+
+    /**
+     * Set the action on the Delete Product button to disply the alert box.
+     */
+    private void setDeleteButtonAction() {
+        deleteProductButton.setOnClickListener(v -> showAlertBoxForDeletingProduct());
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -197,6 +253,32 @@ public class ViewProductAdmin extends AppCompatActivity {
         builder.setCancelable(false);
         builder.setPositiveButton("Yes", (dialog, which) -> {
             Intent intent = new Intent(ViewProductAdmin.this, Login.class);
+            startActivity(intent);
+        });
+
+        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    /**
+     * Defined an alert box in case the ADMIN wants to delete a product.
+     * Yes, he deletes the selected product.
+     * No, the database is not updated.
+     */
+    private void showAlertBoxForDeletingProduct() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ViewProductAdmin.this);
+
+        builder.setMessage("Do you want to delete the product?");
+        builder.setTitle("Alert");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            //call the delete product method
+            deleteProduct();
+
+            //refresh the activity
+            Intent intent = new Intent(ViewProductAdmin.this, HomePageAdmin.class);
             startActivity(intent);
         });
 

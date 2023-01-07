@@ -9,6 +9,7 @@ Aplicația ofera o varietate de caracteristici care să faciliteze utilizatorilo
 - [Pornirea aplicatiei](#pornirea-aplicatiei)
 - [Documentatie](#documentatie)
 - [Developeri](#developeri)
+- [Scanarea codului QR pentru reduceri](#scanarea-codului-qr-pentru-reduceri)
 
 ## Tehnologii folosite  ##
 [![Java 8](https://img.shields.io/badge/Java-8-blue.svg)](https://www.oracle.com/ro/java/technologies/javase/javase8-archive-downloads.html)
@@ -62,7 +63,7 @@ oferit în campania de lansare.
 Scanarea codului QR este posibilă datorită activității: [ScanQRCode](https://github.com/bigbrain2000/Naturalis/blob/main/app/src/main/java/com/chs/naturalis/ScanQRCode.java).
 
 Fluturașul personalizat este:
-https://github.com/bigbrain2000/Naturalis/blob/main/app/src/main/res/drawable/fluturas.png
+![](https://github.com/bigbrain2000/Naturalis/blob/main/app/src/main/res/drawable/fluturas.png)
 
 res/drawable/fluturas.png
 ## Developeri ##

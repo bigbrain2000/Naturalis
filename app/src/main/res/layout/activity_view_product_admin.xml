@@ -114,7 +114,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/editProduct"
+        android:id="@+id/editProductButton"
         android:layout_width="143dp"
         android:layout_height="44dp"
         android:layout_marginTop="400dp"
@@ -130,7 +130,7 @@
 
 
     <Button
-        android:id="@+id/deleteProduct"
+        android:id="@+id/deleteProductButton"
         android:layout_width="143dp"
         android:layout_height="44dp"
         android:layout_marginTop="400dp"
