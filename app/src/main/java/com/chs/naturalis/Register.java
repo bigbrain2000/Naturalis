@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.chs.exceptions.naturalis.FieldNotCompletedException;
 import com.chs.exceptions.naturalis.InvalidEmailException;
 import com.chs.exceptions.naturalis.UserEmailAlreadyExistsException;
+import com.chs.naturalis.model.Discount;
 import com.chs.naturalis.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -370,6 +371,15 @@ public class Register extends AppCompatActivity {
                 database.push().setValue(newUser);
             }
         }
+    }
+
+    /**
+     * Insert into the database the name of the Discount.
+     */
+    private void insertPredefinedDiscount() {
+        Discount discount = new Discount("Naturalis");
+        database = FirebaseDatabase.getInstance().getReference().child("Discount");
+        database.push().setValue(discount);
     }
 
     @NotNull

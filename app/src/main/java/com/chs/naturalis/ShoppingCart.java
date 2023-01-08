@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.chs.naturalis.model.Discount;
 import com.chs.naturalis.model.Product;
 import com.chs.naturalis.model.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -71,13 +73,16 @@ public class ShoppingCart extends AppCompatActivity {
         actionOnNavBarItemSelected();
 
         buyItems();
+
+        applyDiscountToCartItems();
     }
 
     /**
      * Identify the activity field by their id.
      */
     private void identifyTheFieldsById() {
-       // displayQRCodeTextView = findViewById(R.id.displayQRCodeTextView);
+        displayQRCodeTextView = findViewById(R.id.displayQRCodeTextView);
+        displayQRCodeTextView.setVisibility(View.GONE); //don`t allocate space and visibility for the text field
         scanQRButton = findViewById(R.id.scanQRButton);
         shoppingCartListView = findViewById(R.id.shoppingCartListView);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -317,5 +322,47 @@ public class ShoppingCart extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    private void applyDiscountToCartItems() {
+        if (getDisplayQRCodeTextView().getText().equals("Naturalis")) {
+            LOGGER.info("DISCOUNT");
+            LOGGER.info("DISCOUNT");
+            LOGGER.info("DISCOUNT");
+            LOGGER.info("DISCOUNT");
+            LOGGER.info("DISCOUNT");
+        }
+    }
+
+    private void applyDiscountToCartItems2() {
+        DatabaseReference databaseDiscount = FirebaseDatabase.getInstance().getReference().child("Discount");
+        List<Discount> discountList = new ArrayList<>();
+
+        databaseDiscount.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        discountList.add(snapshot.getValue(Discount.class));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                LOGGER.info("Error on retrieving data from database.");
+            }
+        });
+
+        Discount firstDiscount = discountList.get(0);
+
+        if (getDisplayQRCodeTextView().getText().equals(firstDiscount.getName())) {
+            LOGGER.info("DISCOUNT");
+            LOGGER.info("DISCOUNT");
+            LOGGER.info("DISCOUNT");
+            LOGGER.info("DISCOUNT");
+            LOGGER.info("DISCOUNT");
+        }
     }
 }

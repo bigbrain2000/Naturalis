@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chs.exceptions.naturalis.FieldNotCompletedException;
+import com.chs.naturalis.model.Discount;
+import com.chs.naturalis.model.Product;
 import com.chs.naturalis.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +38,7 @@ public class Login extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private DatabaseReference database;
-
+    private DatabaseReference database2;
     private final ArrayList<User> userList = new ArrayList<>();
     private boolean flag = true;
     private static final User loggedUser = new User();
