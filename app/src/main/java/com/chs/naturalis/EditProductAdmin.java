@@ -1,7 +1,5 @@
 package com.chs.naturalis;
 
-import static android.view.MotionEvent.ACTION_DOWN;
-import static android.view.MotionEvent.ACTION_UP;
 import static android.view.Window.FEATURE_NO_TITLE;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
@@ -14,9 +12,8 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,21 +30,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-public class ViewProductAdmin extends AppCompatActivity {
+public class EditProductAdmin extends AppCompatActivity {
 
-    private TextView category, name, price, description;
+    private EditText category, name, price, description;
     private BottomNavigationView adminNavigationView;
 
     private DatabaseReference database;
     private float x1, x2, y1, y2;
     private final String DATABASE_NAME = "Product";
     private final List<Product> productList = new ArrayList<>();
-    private Button editProductButton, deleteProductButton;
+    private Button saveProductButton;
 
     //Take the product name when the client clicked on in it within the ViewSyrupProducts class
     private final String PRODUCT_NAME = getProductName();
 
-    private static final Logger LOGGER = getLogger(ViewProductAdmin.class.getName());
+    private static final Logger LOGGER = getLogger(EditProductAdmin.class.getName());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +55,7 @@ public class ViewProductAdmin extends AppCompatActivity {
         this.getWindow().setFlags(FLAG_FULLSCREEN, FLAG_FULLSCREEN);
 
         //set content view AFTER ABOVE sequence (to avoid crash)
-        setContentView(R.layout.activity_view_product_admin);
+        setContentView(R.layout.activity_edit_product_admin);
 
         super.onCreate(savedInstanceState);
 
@@ -66,11 +63,9 @@ public class ViewProductAdmin extends AppCompatActivity {
 
         viewProduct();
 
+        saveProduct();
+
         actionOnNavBarItemSelected();
-
-        setDeleteButtonAction();
-
-        setEditButtonAction();
     }
 
     /**
@@ -82,8 +77,7 @@ public class ViewProductAdmin extends AppCompatActivity {
         price = findViewById(R.id.price);
         description = findViewById(R.id.description);
         adminNavigationView = findViewById(R.id.adminNavigationView);
-        editProductButton = findViewById(R.id.editProductButton);
-        deleteProductButton = findViewById(R.id.deleteProductButton);
+        saveProductButton = findViewById(R.id.saveProductButton);
     }
 
     /**
@@ -124,15 +118,22 @@ public class ViewProductAdmin extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(ViewProductAdmin.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(EditProductAdmin.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
 
     /**
-     * Deletes the product from the database.
+     * Set the changes done to the product when clicking the SAVE button.
      */
-    private void deleteProduct() {
+    private void saveProduct() {
+        saveProductButton.setOnClickListener(v -> showAlertBoxForSavingProduct());
+    }
+
+    /**
+     * Save the product from the database.
+     */
+    private void saveProductIntoDatabase() {
         database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
 
         database.addValueEventListener(new ValueEventListener() {
@@ -151,10 +152,19 @@ public class ViewProductAdmin extends AppCompatActivity {
                         LOGGER.info("List is not empty.");
                     }
 
+                    Product newProduct;
                     for (Product product : productList) {
                         if (product.getName().equals(PRODUCT_NAME)) {
+                            newProduct = new Product();
+                            newProduct.setId(product.getId());
+                            newProduct.setName(product.getName());
+                            newProduct.setPrice(product.getPrice());
+                            newProduct.setCurrency(product.getCurrency());
+                            newProduct.setCategory(product.getCategory());
+                            newProduct.setQuantity(product.getQuantity());
+                            newProduct.setDescription(product.getDescription());
                             productList.remove(product);
-                            LOGGER.info("Product" + PRODUCT_NAME + " has been deleted.");
+                            productList.add(newProduct);
                         }
                     }
 
@@ -168,16 +178,35 @@ public class ViewProductAdmin extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 LOGGER.info("Error on retrieving data from database.");
-                makeText(ViewProductAdmin.this, "Error on retrieving data from database.", LENGTH_LONG).show();
+                makeText(EditProductAdmin.this, "Error on retrieving data from database.", LENGTH_LONG).show();
             }
         });
     }
 
     /**
-     * Set the action on the deleteProductButton to display the alert box.
+     * Defined an alert box in case the ADMIN wants to delete a product.
+     * Yes, he deletes the selected product.
+     * No, the database is not updated.
      */
-    private void setDeleteButtonAction() {
-        deleteProductButton.setOnClickListener(v -> showAlertBoxForDeletingProduct());
+    private void showAlertBoxForSavingProduct() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProductAdmin.this);
+
+        builder.setMessage("Do you want to save the changes?");
+        builder.setTitle("Alert");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            //call the save product method
+            saveProductIntoDatabase();
+
+            //refresh the activity
+            Intent intent = new Intent(EditProductAdmin.this, HomePageAdmin.class);
+            startActivity(intent);
+        });
+
+        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -200,7 +229,7 @@ public class ViewProductAdmin extends AppCompatActivity {
 
     private void transitionToHomePageAdminActivity() {
         new Handler().post(() -> {
-            Intent intent = new Intent(ViewProductAdmin.this, HomePageAdmin.class);
+            Intent intent = new Intent(EditProductAdmin.this, HomePageAdmin.class);
             startActivity(intent);
             finish();
         });
@@ -208,51 +237,10 @@ public class ViewProductAdmin extends AppCompatActivity {
 
     private void transitionToAddProductActivity() {
         new Handler().post(() -> {
-            Intent intent = new Intent(ViewProductAdmin.this, AddProduct.class);
+            Intent intent = new Intent(EditProductAdmin.this, AddProduct.class);
             startActivity(intent);
             finish();
         });
-    }
-
-    /**
-     * Set the action on the editProductButton to open the {@link EditProductAdmin}
-     */
-    private void setEditButtonAction() {
-        editProductButton.setOnClickListener(v ->
-                new Handler().post(() -> {
-                    Intent intent = new Intent(ViewProductAdmin.this, EditProductAdmin.class);
-                    startActivity(intent);
-                    finish();
-                })
-        );
-    }
-
-    /**
-     * Sliding right opens the {@link Login} activity.
-     * Sliding left opens the {@link ShoppingCart} activity.
-     */
-    public boolean onTouchEvent(MotionEvent touch) {
-        switch (touch.getAction()) {
-            case ACTION_DOWN:
-                x1 = touch.getX();
-                y1 = touch.getY();
-                break;
-            case ACTION_UP:
-                x2 = touch.getX();
-                y2 = touch.getY();
-
-                if (x1 < x2) {
-                    Intent intent = new Intent(ViewProductAdmin.this, HomePageAdmin.class);
-                    startActivity(intent);
-                }
-
-                if (x1 > x2) {
-                    showAlertBoxForLogout();
-                }
-                break;
-        }
-
-        return false;
     }
 
     /**
@@ -261,39 +249,13 @@ public class ViewProductAdmin extends AppCompatActivity {
      * No, he stays in the same activity.
      */
     private void showAlertBoxForLogout() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ViewProductAdmin.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditProductAdmin.this);
 
         builder.setMessage("Do you want to exit the application?");
         builder.setTitle("Alert");
         builder.setCancelable(false);
         builder.setPositiveButton("Yes", (dialog, which) -> {
-            Intent intent = new Intent(ViewProductAdmin.this, Login.class);
-            startActivity(intent);
-        });
-
-        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-    /**
-     * Defined an alert box in case the ADMIN wants to delete a product.
-     * Yes, he deletes the selected product.
-     * No, the database is not updated.
-     */
-    private void showAlertBoxForDeletingProduct() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ViewProductAdmin.this);
-
-        builder.setMessage("Do you want to delete the product?");
-        builder.setTitle("Alert");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Yes", (dialog, which) -> {
-            //call the delete product method
-            deleteProduct();
-
-            //refresh the activity
-            Intent intent = new Intent(ViewProductAdmin.this, HomePageAdmin.class);
+            Intent intent = new Intent(EditProductAdmin.this, Login.class);
             startActivity(intent);
         });
 
