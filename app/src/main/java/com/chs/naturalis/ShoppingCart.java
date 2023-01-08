@@ -77,7 +77,7 @@ public class ShoppingCart extends AppCompatActivity {
      * Identify the activity field by their id.
      */
     private void identifyTheFieldsById() {
-        displayQRCodeTextView = findViewById(R.id.displayQRCodeTextView);
+       // displayQRCodeTextView = findViewById(R.id.displayQRCodeTextView);
         scanQRButton = findViewById(R.id.scanQRButton);
         shoppingCartListView = findViewById(R.id.shoppingCartListView);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
