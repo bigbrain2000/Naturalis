@@ -177,6 +177,11 @@ public class HomePageClient extends AppCompatActivity {
                     Intent intent = new Intent(HomePageClient.this, ShoppingCart.class);
                     startActivity(intent);
                 }
+
+                if (x1 < x2) {
+                    Intent intent = new Intent(HomePageClient.this, ShoppingCart.class);
+                    startActivity(intent);
+                }
                 break;
         }
 

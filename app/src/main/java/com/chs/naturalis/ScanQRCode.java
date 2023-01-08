@@ -57,7 +57,7 @@ public class ScanQRCode extends AppCompatActivity implements ZXingScannerView.Re
 
     @Override
     public void handleResult(Result rawResult) {
-        ShoppingCart.getDisplayQRCodeTextView().setText(rawResult.getText());
+        //ShoppingCart.getDisplayQRCodeTextView().setText(rawResult.getText());
         onBackPressed();
     }
 

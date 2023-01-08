@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import static android.view.MotionEvent.ACTION_DOWN;
+import static android.view.MotionEvent.ACTION_UP;
 import static android.view.Window.FEATURE_NO_TITLE;
 import static android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN;
 import static android.widget.Toast.LENGTH_LONG;
@@ -13,6 +15,7 @@ import static java.util.logging.Logger.getLogger;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,6 +41,7 @@ public class TeaProducts extends AppCompatActivity {
     private final List<Product> productList2 = new ArrayList<>();
     private static String productName;
     private final String DATABASE_NAME = "Product";
+    private float x1, x2, y1, y2;
 
     private static final Logger LOGGER = getLogger(TeaProducts.class.getName());
 
@@ -169,5 +173,32 @@ public class TeaProducts extends AppCompatActivity {
      */
     public static String getTeaProductName() {
         return productName;
+    }
+
+    /**
+     * Sliding left opens the {@link HomePageClient} activity.
+     */
+    public boolean onTouchEvent(MotionEvent touch) {
+        switch (touch.getAction()) {
+            case ACTION_DOWN:
+                x1 = touch.getX();
+                y1 = touch.getY();
+                break;
+            case ACTION_UP:
+                x2 = touch.getX();
+                y2 = touch.getY();
+
+                if (x1 < x2) {
+                    Intent intent = new Intent(TeaProducts.this, HomePageClient.class);
+                    startActivity(intent);
+                }
+
+                if (x1 > x2) {
+                    return true;
+                }
+                break;
+        }
+
+        return false;
     }
 }
