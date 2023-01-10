@@ -38,10 +38,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/totalPriceShoppingCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
         <Button
             android:id="@+id/buyItemsButton"
-            android:layout_width="394dp"
-            android:layout_height="86dp"
+            android:layout_width="244dp"
+            android:layout_height="38dp"
             android:backgroundTint="@color/green"
             android:text="Buy"
             android:textSize="20sp"

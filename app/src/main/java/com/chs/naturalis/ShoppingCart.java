@@ -42,6 +42,7 @@ public class ShoppingCart extends AppCompatActivity {
     private Button scanQRButton, buyItemsButton;
     @SuppressLint("StaticFieldLeak")
     private static TextView displayQRCodeTextView;
+    private static TextView totalPriceShoppingCart;
     private BottomNavigationView bottomNavigationView;
     private ListView shoppingCartListView;
 
@@ -87,6 +88,7 @@ public class ShoppingCart extends AppCompatActivity {
         shoppingCartListView = findViewById(R.id.shoppingCartListView);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         buyItemsButton = findViewById(R.id.buyItemsButton);
+        totalPriceShoppingCart = findViewById(R.id.totalPriceShoppingCart);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -207,6 +209,13 @@ public class ShoppingCart extends AppCompatActivity {
                             productsNameList.add(product.getName());
                         }
                     }
+////set the total price before the discount
+//                    double sum = 0;
+//                    for (Product product : productList) {
+//                        sum = sum + product.getPrice();
+//                    }
+//
+//                    totalPriceShoppingCart.setText(String.valueOf(sum));
 
                     //Set the listview items as the productsNameList objects.
                     if (productsNameList.size() > 0) {
@@ -363,6 +372,11 @@ public class ShoppingCart extends AppCompatActivity {
             LOGGER.info("DISCOUNT");
             LOGGER.info("DISCOUNT");
             LOGGER.info("DISCOUNT");
+//
+//            double totalPrice = Double.parseDouble(totalPriceShoppingCart.getText().toString());
+//            double discount = 0.20;
+//            double discountedPrice = totalPrice - (totalPrice * discount);
+//            totalPriceShoppingCart.setText(String.valueOf(discountedPrice));
         }
     }
 }
