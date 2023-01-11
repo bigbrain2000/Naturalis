@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="97dp"
             android:backgroundTint="@color/green"
-            android:text="Scan QRCode"
+            android:text="Scan QR Code"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
