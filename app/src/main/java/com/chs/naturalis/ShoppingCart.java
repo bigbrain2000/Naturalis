@@ -42,7 +42,6 @@ public class ShoppingCart extends AppCompatActivity {
     private Button scanQRButton, buyItemsButton;
     @SuppressLint("StaticFieldLeak")
     private static TextView displayQRCodeTextView;
-    private static TextView totalPriceShoppingCart;
     private BottomNavigationView bottomNavigationView;
     private ListView shoppingCartListView;
 
@@ -74,8 +73,6 @@ public class ShoppingCart extends AppCompatActivity {
         actionOnNavBarItemSelected();
 
         buyItems();
-
-        applyDiscountToCartItems();
     }
 
     /**
@@ -83,12 +80,11 @@ public class ShoppingCart extends AppCompatActivity {
      */
     private void identifyTheFieldsById() {
         displayQRCodeTextView = findViewById(R.id.displayQRCodeTextView);
-        displayQRCodeTextView.setVisibility(View.GONE); //don`t allocate space and visibility for the text field
+        //displayQRCodeTextView.setVisibility(View.GONE); //don`t allocate space and visibility for the text field
         scanQRButton = findViewById(R.id.scanQRButton);
         shoppingCartListView = findViewById(R.id.shoppingCartListView);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         buyItemsButton = findViewById(R.id.buyItemsButton);
-        totalPriceShoppingCart = findViewById(R.id.totalPriceShoppingCart);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -209,13 +205,6 @@ public class ShoppingCart extends AppCompatActivity {
                             productsNameList.add(product.getName());
                         }
                     }
-////set the total price before the discount
-//                    double sum = 0;
-//                    for (Product product : productList) {
-//                        sum = sum + product.getPrice();
-//                    }
-//
-//                    totalPriceShoppingCart.setText(String.valueOf(sum));
 
                     //Set the listview items as the productsNameList objects.
                     if (productsNameList.size() > 0) {
@@ -331,52 +320,5 @@ public class ShoppingCart extends AppCompatActivity {
         }
 
         return false;
-    }
-
-    private void applyDiscountToCartItems() {
-        if (getDisplayQRCodeTextView().getText().equals("Naturalis")) {
-            LOGGER.info("DISCOUNT");
-            LOGGER.info("DISCOUNT");
-            LOGGER.info("DISCOUNT");
-            LOGGER.info("DISCOUNT");
-            LOGGER.info("DISCOUNT");
-        }
-    }
-
-    private void applyDiscountToCartItems2() {
-        DatabaseReference databaseDiscount = FirebaseDatabase.getInstance().getReference().child("Discount");
-        List<Discount> discountList = new ArrayList<>();
-
-        databaseDiscount.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        discountList.add(snapshot.getValue(Discount.class));
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                LOGGER.info("Error on retrieving data from database.");
-            }
-        });
-
-        Discount firstDiscount = discountList.get(0);
-
-        if (getDisplayQRCodeTextView().getText().equals(firstDiscount.getName())) {
-            LOGGER.info("DISCOUNT");
-            LOGGER.info("DISCOUNT");
-            LOGGER.info("DISCOUNT");
-            LOGGER.info("DISCOUNT");
-            LOGGER.info("DISCOUNT");
-//
-//            double totalPrice = Double.parseDouble(totalPriceShoppingCart.getText().toString());
-//            double discount = 0.20;
-//            double discountedPrice = totalPrice - (totalPrice * discount);
-//            totalPriceShoppingCart.setText(String.valueOf(discountedPrice));
-        }
     }
 }

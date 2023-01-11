@@ -131,6 +131,7 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
                 int quantityInt = Integer.parseInt(quantity.getText().toString().trim());
                 product.setQuantity(quantityInt);
                 product.setCategory(categoryType);
+                product.setDescription(description.getText().toString().trim());
                 product.setCurrency("lei");
 
                 LOGGER.info("Product added successfully.");
