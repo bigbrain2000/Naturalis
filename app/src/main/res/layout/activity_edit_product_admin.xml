@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_light"
+    tools:context=".EditProductAdmin"
+    tools:ignore="HardcodedText,MissingConstraints">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="logo"
+        android:paddingBottom="450dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/background_admin" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingTop="250dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:text="Category"
+            android:textColor="@color/gray"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Category"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingTop="320dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:text="Name"
+            android:textColor="@color/gray"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingTop="390dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:text="Price"
+            android:textColor="@color/gray"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Price"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingTop="460dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="36dp"
+            android:text="Description"
+            android:textColor="@color/gray"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/saveProductButton"
+        android:layout_width="206dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="400dp"
+        android:backgroundTint="@color/green"
+        android:text="SAVE"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.589" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/adminNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/green"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/green"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/admin_navigation_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
