@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chs.exceptions.naturalis.FieldNotCompletedException;
+import com.chs.naturalis.model.Discount;
+import com.chs.naturalis.model.Product;
 import com.chs.naturalis.model.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +38,7 @@ public class Login extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private DatabaseReference database;
-
+    private DatabaseReference database2;
     private final ArrayList<User> userList = new ArrayList<>();
     private boolean flag = true;
     private static final User loggedUser = new User();
@@ -68,11 +70,11 @@ public class Login extends AppCompatActivity {
      */
     private void switchActivityToRegister() {
         registerButton = findViewById(R.id.registerButton);
-        registerButton.setOnClickListener(v -> new Handler().postDelayed(() -> {
+        registerButton.setOnClickListener(v -> new Handler().post(() -> {
             Intent intent = new Intent(Login.this, Register.class);
             startActivity(intent);
             finish();
-        }, 1));
+        }));
     }
 
     /**
@@ -168,7 +170,7 @@ public class Login extends AppCompatActivity {
     private void switchActivityBasedUserRole() {
         loginButton = findViewById(R.id.loginButton);
 
-        loginButton.setOnClickListener(v -> new Handler().postDelayed(() -> {
+        loginButton.setOnClickListener(v -> new Handler().post(() -> {
             int value = getValueBasedOnUserRole();
 
             try {
@@ -193,7 +195,7 @@ public class Login extends AppCompatActivity {
             } catch (FieldNotCompletedException e) {
                 LOGGER.info("User has not been logged in due to uncompleted fields.");
             }
-        }, 1));
+        }));
     }
 
 

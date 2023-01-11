@@ -67,13 +67,12 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
         identifyTheProductFieldsById();
 
         setSpinner();
+
         actionOnNavBarItemSelected();
 
         addProduct();
 
         //insertPredefinedProduct();
-
-
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -119,25 +118,8 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
         try {
             checkAllFieldsAreCompleted(name, price, quantity, description);
 
-            database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
+            readFromTheDatabase();
 
-            database.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        productList.clear();
-
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            productList.add(snapshot.getValue(Product.class));
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    LOGGER.info("Error on retrieving data from database.");
-                }
-            });
             if (productList.size() > 0) {
                 LOGGER.info("Product list is not empty.");
                 int max = productList.get(productList.size() - 1).getId();
@@ -149,16 +131,42 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
                 int quantityInt = Integer.parseInt(quantity.getText().toString().trim());
                 product.setQuantity(quantityInt);
                 product.setCategory(categoryType);
+                product.setDescription(description.getText().toString().trim());
                 product.setCurrency("lei");
 
                 LOGGER.info("Product added successfully.");
                 makeText(AddProduct.this, "Product added successfully", LENGTH_LONG).show();
                 database.push().setValue(product);
+
+                //after the product is inserted in the database, clear the fields
+                clearFields();
             }
         } catch (FieldNotCompletedException e) {
             makeText(AddProduct.this, "Fields are not completed!", LENGTH_LONG).show();
             LOGGER.info("Product has not been created due to uncompleted fields.");
         }
+    }
+
+    private void readFromTheDatabase() {
+        database = FirebaseDatabase.getInstance().getReference().child(DATABASE_NAME);
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    productList.clear();
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        productList.add(snapshot.getValue(Product.class));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                LOGGER.info("Error on retrieving data from database.");
+            }
+        });
     }
 
     private void checkAllFieldsAreCompleted(@NotNull EditText name, @NotNull EditText price, @NotNull EditText quantity, @NotNull EditText description) throws FieldNotCompletedException {
@@ -181,8 +189,6 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
         category.setAdapter(adapter);
         category.setOnItemSelectedListener(this);
     }
-
-
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -221,5 +227,12 @@ public class AddProduct extends AppCompatActivity implements AdapterView.OnItemS
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private void clearFields() {
+        name.getText().clear();
+        price.getText().clear();
+        quantity.getText().clear();
+        description.getText().clear();
     }
 }

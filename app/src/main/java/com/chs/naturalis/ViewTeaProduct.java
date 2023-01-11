@@ -10,6 +10,7 @@ import static com.chs.naturalis.TeaProducts.getTeaProductName;
 import static java.util.logging.Logger.getLogger;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -130,7 +131,7 @@ public class ViewTeaProduct extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.buyButton:
                     LOGGER.info("User bought a product");
-                    insertBoughtProductIntoDb();
+                    showAlertBoxForAddingAProductToCart();
                     return true;
                 case R.id.goBackButton:
                     transitionToHomePageClientActivity();
@@ -209,5 +210,26 @@ public class ViewTeaProduct extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    /**
+     * Defined an alert box in case the CLIENT wants to add a product to his shopping cart.
+     * Yes, he adds the selected product to his shopping cart.
+     * No, he does not adds the selected product to his shopping cart.
+     */
+    private void showAlertBoxForAddingAProductToCart() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ViewTeaProduct.this);
+
+        builder.setMessage("Do you want add the product to your cart?");
+        builder.setTitle("Alert");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            insertBoughtProductIntoDb();
+        });
+
+        builder.setNegativeButton("No", (dialog, which) -> dialog.cancel());
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

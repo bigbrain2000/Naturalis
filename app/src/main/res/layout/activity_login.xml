@@ -131,36 +131,56 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="550dp"
+        android:layout_marginEnd="197dp"
+        android:layout_marginBottom="48dp"
+        android:text="Don't have an account?"
+        android:textAlignment="textStart"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.879" />
+
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="188dp"
-        android:layout_height="74dp"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="670dp"
-        android:layout_marginEnd="95dp"
-        android:layout_marginBottom="63dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="672dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="43dp"
         android:backgroundTint="@color/green"
         android:ems="12"
         android:text="Sign up" />
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="327dp"
-        android:layout_height="95dp"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="512dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="537dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="155dp"
         android:backgroundTint="@color/green"
         android:text="Login" />
-
 
 </RelativeLayout>

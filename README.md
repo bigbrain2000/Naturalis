@@ -65,7 +65,6 @@ Scanarea codului QR este posibilă datorită activității: [ScanQRCode](https:/
 Fluturașul personalizat este:
 ![](https://github.com/bigbrain2000/Naturalis/blob/main/app/src/main/res/drawable/fluturas.png)
 
-res/drawable/fluturas.png
 ## Developeri ##
 [Mester Rebeca](https://github.com/RebecaMester)
 [Roncea Marius-Alexandru](https://github.com/bigbrain2000)
