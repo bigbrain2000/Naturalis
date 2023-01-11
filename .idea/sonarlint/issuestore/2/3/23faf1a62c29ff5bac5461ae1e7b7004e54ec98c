@@ -1,0 +1,37 @@
+
+g
+java:S1301§"KReplace this "switch" statement by "if" statements to increase readability.(ñÆ™íÿÿÿÿÿ
+[
+java:S1659"EDeclare "imageTea" and all following declarations on a separate line.(õŞ”µ
+Z
+java:S1659"?Declare "x2" and all following declarations on a separate line.(àíéÂúÿÿÿÿ
+l
+java:S1450"QRemove the "x2" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ
+l
+java:S1450"QRemove the "y1" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ
+l
+java:S1450"QRemove the "y2" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ
+R
+java:S1874&"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+R
+java:S1874&"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+<	java:S131E""Add a default case to this switch.(øå´¡ÿÿÿÿÿ
+J
+java:S1874Z"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ
+J
+java:S1874c"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ
+J
+java:S1874l"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ
+J
+java:S1874u"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ
+J
+java:S1874~"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ
+K
+java:S1874†"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ
+Q
+java:S1161¦":Add the "@Override" annotation above this method signature(½æÁ½
+=	java:S131§""Add a default case to this switch.(ñÆ™íÿÿÿÿÿ
+A
+java:S1068"&Remove this unused "y1" private field.(àíéÂúÿÿÿÿ
+A
+java:S1068"&Remove this unused "y2" private field.(àíéÂúÿÿÿÿ

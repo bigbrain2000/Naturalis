@@ -1,0 +1,40 @@
+
+~
+java:S1192y"hDefine a constant instead of duplicating this literal "Error on retrieving data from database." 3 times.(ÉÚÂù
+g
+java:S1301ƒ"KReplace this "switch" statement by "if" statements to increase readability.(øå´¡ÿÿÿÿÿ
+g
+java:S1301Ä"KReplace this "switch" statement by "if" statements to increase readability.(ñÆ™íÿÿÿÿÿ
+c
+java:S2637 "GParameter 1 to this call is marked "@NonNull" but null could be passed.(âãñ’úÿÿÿÿ
+r	java:S116-"XRename this field "DATABASE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»µâ÷ùÿÿÿÿ
+<
+java:S1170-"!Make this final field static too.(»µâ÷ùÿÿÿÿ
+\
+java:S1659&"ADeclare "name" and all following declarations on a separate line.(‰†ªúÿÿÿÿ
+Z
+java:S1659."?Declare "x2" and all following declarations on a separate line.(àíéÂúÿÿÿÿ
+l
+java:S1450."QRemove the "x2" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ
+l
+java:S1450."QRemove the "y1" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ
+l
+java:S1450."QRemove the "y2" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ
+R
+java:S18748"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+R
+java:S18748"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+h
+java:S3776T"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ô®×†
+=	java:S131ƒ""Add a default case to this switch.(øå´¡ÿÿÿÿÿ
+K
+java:S1874¹"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ
+Q
+java:S1161Ã":Add the "@Override" annotation above this method signature(½æÁ½
+=	java:S131Ä""Add a default case to this switch.(ñÆ™íÿÿÿÿÿ
+O
+java:S1602â",Remove useless curly braces around statement(—‹õ¤úÿÿÿÿ8ì†Å„Ù0
+A
+java:S1068."&Remove this unused "y1" private field.(àíéÂúÿÿÿÿ
+A
+java:S1068."&Remove this unused "y2" private field.(àíéÂúÿÿÿÿ

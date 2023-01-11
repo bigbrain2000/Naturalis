@@ -1,0 +1,33 @@
+
+…
+java:S1192t"hDefine a constant instead of duplicating this literal "Error on retrieving data from database." 4 times.(ÉÚÂù8Šş–Í0
+n
+java:S1301¶"KReplace this "switch" statement by "if" statements to increase readability.(ñÆ™íÿÿÿÿÿ8›£ˆƒÙ0
+y	java:S116+"XRename this field "DATABASE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»µâ÷ùÿÿÿÿ8ğş–Í0
+C
+java:S1170+"!Make this final field static too.(»µâ÷ùÿÿÿÿ8ƒÿ–Í0
+a
+java:S1659,"?Declare "x2" and all following declarations on a separate line.(àíéÂúÿÿÿÿ8 Ñ‰ƒÙ0
+s
+java:S1450,"QRemove the "x2" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ8¡Ñ‰ƒÙ0
+s
+java:S1450,"QRemove the "y1" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ8¡Ñ‰ƒÙ0
+s
+java:S1450,"QRemove the "y2" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ8¡Ñ‰ƒÙ0
+Y
+java:S18747"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ8ÿ–Í0
+Y
+java:S18747"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ8ÿ–Í0
+S
+java:S2696d"6Make the enclosing method "static" or remove this set.(ë®¿•8ï›¤–Í0
+Q
+java:S1874f"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ8ğ›¤–Í0
+t
+java:S3776}"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Ì¤Öıÿÿÿÿ8¬ÿ–Í0
+X
+java:S1161µ":Add the "@Override" annotation above this method signature(½æÁ½8©¤ˆƒÙ0
+D	java:S131¶""Add a default case to this switch.(ñÆ™íÿÿÿÿÿ8ª¤ˆƒÙ0
+H
+java:S1068,"&Remove this unused "y1" private field.(àíéÂúÿÿÿÿ8ÉÑ‰ƒÙ0
+H
+java:S1068,"&Remove this unused "y2" private field.(àíéÂúÿÿÿÿ8ÉÑ‰ƒÙ0

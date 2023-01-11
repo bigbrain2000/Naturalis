@@ -1,0 +1,43 @@
+
+…
+java:S1192|"hDefine a constant instead of duplicating this literal "Error on retrieving data from database." 4 times.(ÉÚÂù8ò¨ü‚Ù0
+n
+java:S1301Ü"KReplace this "switch" statement by "if" statements to increase readability.(ñÆ™íÿÿÿÿÿ8Úü¯ìØ0
+y	java:S116+"XRename this field "DATABASE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»µâ÷ùÿÿÿÿ8±ş¯ìØ0
+x	java:S1160"WRename this field "PRODUCT_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€­Ú¶ùÿÿÿÿ8³ş¯ìØ0
+C
+java:S1170+"!Make this final field static too.(»µâ÷ùÿÿÿÿ8Ãş¯ìØ0
+c
+java:S1659&"ADeclare "name" and all following declarations on a separate line.(‰†ªúÿÿÿÿ8Èş¯ìØ0
+a
+java:S1659*"?Declare "x2" and all following declarations on a separate line.(àíéÂúÿÿÿÿ8Éş¯ìØ0
+S
+java:S1659-"1Declare "deleteProductButton" on a separate line.(§±Û—üÿÿÿÿ8Êş¯ìØ0
+‚
+java:S1450-"`Remove the "editProductButton" field and declare it as a local variable in the relevant methods.(§±Û—üÿÿÿÿ8Ï©ü‚Ù0
+s
+java:S1450*"QRemove the "x2" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ8Ëş¯ìØ0
+s
+java:S1450*"QRemove the "y1" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ8Íş¯ìØ0
+s
+java:S1450*"QRemove the "y2" field and declare it as a local variable in the relevant methods.(àíéÂúÿÿÿÿ8Îş¯ìØ0
+Y
+java:S1874:"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ8÷ş¯ìØ0
+Y
+java:S1874:"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ8úş¯ìØ0
+o
+java:S3776Z"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(ô®×†8ò©ü‚Ù0
+p
+java:S3776…"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(´Ó«‰8ı©ü‚Ù0
+D	java:S131¸""Add a default case to this switch.(øå´¡ÿÿÿÿÿ8•°ìØ0
+R
+java:S1874È"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ8’ªü‚Ù0
+R
+java:S1874Ğ"/Remove this use of "Handler"; it is deprecated.(ÑïĞúÿÿÿÿ8ªü‚Ù0
+X
+java:S1161Û":Add the "@Override" annotation above this method signature(½æÁ½8°ìØ0
+D	java:S131Ü""Add a default case to this switch.(ñÆ™íÿÿÿÿÿ8¢ªü‚Ù0
+H
+java:S1068*"&Remove this unused "y1" private field.(àíéÂúÿÿÿÿ8Ã°ìØ0
+H
+java:S1068*"&Remove this unused "y2" private field.(àíéÂúÿÿÿÿ8Ä°ìØ0

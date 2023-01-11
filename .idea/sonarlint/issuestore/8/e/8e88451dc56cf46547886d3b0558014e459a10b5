@@ -1,0 +1,23 @@
+
+f	java:S117{"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê®Å‡
+k	java:S117|"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âæ» ùÿÿÿÿ
+f	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šÎñ±
+w	java:S116+"]Rename this field "USER_DATABASE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ý¥Œôûÿÿÿÿ
+<
+java:S1170+"!Make this final field static too.(Ý¥Œôûÿÿÿÿ
+m
+java:S1450&"WRemove the "database" field and declare it as a local variable in the relevant methods.(Î¤¦¼
+p
+java:S1450#"ZRemove the "loginButton" field and declare it as a local variable in the relevant methods.(à…÷Ÿ
+r
+java:S1450""]Remove the "registerButton" field and declare it as a local variable in the relevant methods.(›­®d
+R
+java:S18746"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+R
+java:S18746"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+E
+java:S1874G"/Remove this use of "Handler"; it is deprecated.(ÝàÈƒ
+H
+java:S5261†"1Add explicit curly braces to avoid dangling else.(å¥ž‡
+F
+java:S1874«"/Remove this use of "Handler"; it is deprecated.(‹àÚ

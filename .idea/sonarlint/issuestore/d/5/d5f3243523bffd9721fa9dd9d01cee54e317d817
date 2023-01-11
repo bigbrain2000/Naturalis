@@ -1,0 +1,26 @@
+
+K
+java:S1066€"/Merge this if statement with the enclosing one.(–Ï«¹şÿÿÿÿ
+g	java:S117§"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê®Å‡
+l	java:S117¨"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âæ» ùÿÿÿÿ
+g	java:S117©"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šÎñ±
+`
+java:S1659."EDeclare "password" and all following declarations on a separate line.(ğæ³êüÿÿÿÿ
+n
+java:S14502"SRemove the "user" field and declare it as a local variable in the relevant methods.(’Ø¾ıÿÿÿÿ
+R
+java:S1874F"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+R
+java:S1874F"7Remove this use of "FLAG_FULLSCREEN"; it is deprecated.(±Ÿ÷Ôúÿÿÿÿ
+K
+java:S1874í"/Remove this use of "Handler"; it is deprecated.(’àŞ–úÿÿÿÿ
+K
+java:S1874Ã"/Remove this use of "Handler"; it is deprecated.(’àŞ–úÿÿÿÿ
+X
+java:S1117×"<Rename "userList" which hides the field declared at line 52.(‘ ‚‹üÿÿÿÿ
+T
+java:S1117Ø"8Rename "user" which hides the field declared at line 50.(‘¾¡–ùÿÿÿÿ
+X
+java:S1117ç"<Rename "userList" which hides the field declared at line 52.(‘ ‚‹üÿÿÿÿ
+T
+java:S1117è"8Rename "user" which hides the field declared at line 50.(‘¾¡–ùÿÿÿÿ
